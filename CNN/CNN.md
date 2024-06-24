@@ -10,8 +10,6 @@ Convolutional Neural Networks (CNNs) are a class of deep neural networks commonl
 
 The convolutional layer is the core building block of a CNN. It applies a convolution operation to the input, passing the result to the next layer. The key concepts in convolutional layers include:
 
-- **2D Signals, 1D Signals:** Convolutional layers can handle different types of data, including 2D signals (e.g., images) and 1D signals (e.g., time series data).
-
 - **Receptive Fields:** The receptive field is the region of the input image that affects a particular output value. In CNNs, neurons in early layers have small receptive fields, while neurons in deeper layers have larger receptive fields.
 
 - **Activation Maps:** After applying the convolution operation, the resulting output is called an activation map (or feature map), which highlights the presence of features in the input.
