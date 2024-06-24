@@ -2,38 +2,48 @@
 
 ## Overview
 
-...
+Convolutional Neural Networks (CNNs) are a class of deep neural networks commonly used for analyzing visual imagery. They are inspired by the structure and function of the human visual cortex and are particularly well-suited for image classification, object detection, and other tasks involving grid-like data. CNNs leverage three main ideas: local receptive fields, shared weights, and spatial subsampling, to achieve high performance on tasks involving visual data.
 
-Capabilities:
+## Architecture
 
-- 
+### Convolutional Layer
 
-Limitations:
+The convolutional layer is the core building block of a CNN. It applies a convolution operation to the input, passing the result to the next layer. The key concepts in convolutional layers include:
 
-- 
+- **2D Signals, 1D Signals:** Convolutional layers can handle different types of data, including 2D signals (e.g., images) and 1D signals (e.g., time series data).
 
+- **Receptive Fields:** The receptive field is the region of the input image that affects a particular output value. In CNNs, neurons in early layers have small receptive fields, while neurons in deeper layers have larger receptive fields.
 
-### Convolution Layer (2D Signals)
+- **Activation Maps:** After applying the convolution operation, the resulting output is called an activation map (or feature map), which highlights the presence of features in the input.
 
-- **Spatial Structure:** Preserve spatial relationships in the input data.
-- **Convolution Process:** Slide filter over the image, computing dot products with the window of pixels.
-- **Activation Map:** Result of convolving the filter over all spatial locations.
-- **Sparse Connectivity:** Connects to spatially constrained portions of the input.
-- **Parameter Sharing:** One filter's parameters are shared among many portions of the input.
+- **Stride:** The stride is the step size with which the convolution filter moves across the input image. A larger stride reduces the spatial dimensions of the output.
 
-### Convolution Layer (1D Signals)
+- **Padding:** Padding involves adding extra pixels around the input image to control the spatial size of the output. Common padding strategies include "valid" (no padding) and "same" (padding to keep the output size equal to the input size).
 
-- **Principle:** Same as 2D but applied to time series.
-- **Output:** 1D signal with preserved spatial structure.
+### Pooling Layer
 
-### Filters in Convolution Layer
-- **Purpose:** Detect specific patterns like edges, strokes, or textures.
-- **Training:** Filters are learned through the training process.
+The pooling layer reduces the spatial dimensions of the activation maps, which helps decrease the computational load and the number of parameters. Pooling operations include:
 
-### Additional Layers
-- **Max Pooling Layer:** Reduces spatial size of representation while keeping significant activations.
-- **Dropout Layer:** Randomly sets activations to zero to make the network robust and avoid overfitting.
-- **Dense Layer:** Fully connected layer used at the output of CNN for classification.
+- **Max Pooling:** Selects the maximum value from each patch of the feature map.
 
-### Full Architecture for Image Recognition
-- **Typical Configuration:** Stack sequences of CONV-RELU-POOL layers, ending with a fully connected dense layer.
+- **Average Pooling:** Computes the average value of each patch of the feature map.
+
+### Dense Layer
+
+The dense layer, or fully connected layer, connects every neuron in one layer to every neuron in the next layer. This layer is typically used at the end of the network to combine features learned by convolutional and pooling layers and to produce the final output. Dense layers are often followed by an activation function, such as ReLU (Rectified Linear Unit) or softmax, depending on the task.
+
+- **Dropout Layer:** A dropout layer randomly sets a fraction of the input units to zero during training to prevent overfitting. This helps the model generalize better to new data.
+
+## TensorFlow Implementation
+
+### Model Definition
+
+```py
+
+```
+
+### Training and Evaluation
+
+```py
+
+```
