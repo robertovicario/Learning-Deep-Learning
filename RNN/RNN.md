@@ -8,7 +8,9 @@ Recurrent Neural Networks (RNNs) are a type of neural network architecture desig
 
 An RNN consists of a network of nodes, or neurons, arranged in layers. Each neuron in a given layer is connected to every neuron in the next layer. What sets RNNs apart from feedforward neural networks is the presence of recurrent connections, where the output of a neuron at time step $t$ is used as input to the same neuron at time step $t+1$. This recurrent connection allows the network to retain information about previous inputs, effectively creating a memory.
 
-### Recurrent Unit
+### Simple Layer
+
+The basic RNN layer comprises neurons that receive input from both the current time step and the hidden state from the previous time step. The hidden state is updated at each time step based on the current input and the previous hidden state, allowing the network to maintain a memory of past inputs.
 
 A single RNN cell consists of an input vector $x_t$, a hidden state vector $h_t$, and an output vector $y_t$. The hidden state $h_t$ is updated based on the previous hidden state $h_{t-1}$ and the current input $x_t$. The update process can be described mathematically as follows:
 
@@ -28,7 +30,19 @@ where $\sigma$ is a non-linear activation function, $W_h$, $W_x$, and $W_y$ are 
     </tr>
 </table>
 
-### Types
+### Advanced Layers
+
+- **LSTM:** Long Short-Term Memory (LSTM) networks are a type of RNN designed to capture long-range dependencies and mitigate the vanishing gradient problem. LSTMs introduce a more complex cell structure, which includes gates that regulate the flow of information.
+
+- **GRU:** Gated Recurrent Unit (GRU) is a simplified version of LSTM that combines the forget and input gates into a single update gate and merges the cell state and hidden state. This makes GRUs computationally more efficient while still addressing the vanishing gradient problem.
+
+### Dense Layer
+
+The dense layer, also known as a fully connected layer, is a traditional neural network layer where each neuron is connected to every neuron in the previous layer. In the context of RNNs, dense layers are typically used after the recurrent layers to process the sequential data output by the RNN or LSTM/GRU layers and produce the final output.
+
+- **Dropout Layer:** A dropout layer randomly sets a fraction of the input units to zero during training to prevent overfitting. This helps the model generalize better to new data.
+
+### RNNs Types
 
 RNNs can be categorized into different types based on the input and output sequences:
 
@@ -50,32 +64,14 @@ RNNs can be categorized into different types based on the input and output seque
         <td><img src="/RNN/img/5.png" width="512"></td>
     </tr>
         <tr>
-        <td align="center">Many-to-many<br>(Target eq)</td>
+        <td align="center">Many-to-many<br>(Eq-Target)</td>
         <td><img src="/RNN/img/6.png" width="512"></td>
     </tr>
         <tr>
-        <td align="center">Many-to-many<br>(Target neq)</td>
+        <td align="center">Many-to-many<br>(Neq-target)</td>
         <td><img src="/RNN/img/7.png" width="512"></td>
     </tr>
 </table>
-
-### Simple Layer
-
-The basic RNN layer comprises neurons that receive input from both the current time step and the hidden state from the previous time step. The hidden state is updated at each time step based on the current input and the previous hidden state, allowing the network to maintain a memory of past inputs.
-
-### LSTM Layer
-
-Long Short-Term Memory (LSTM) networks are a type of RNN designed to capture long-range dependencies and mitigate the vanishing gradient problem. LSTMs introduce a more complex cell structure, which includes gates that regulate the flow of information.
-
-### GRU Layer
-
-Gated Recurrent Unit (GRU) is a simplified version of LSTM that combines the forget and input gates into a single update gate and merges the cell state and hidden state. This makes GRUs computationally more efficient while still addressing the vanishing gradient problem.
-
-### Dense Layer
-
-The dense layer, also known as a fully connected layer, is a traditional neural network layer where each neuron is connected to every neuron in the previous layer. In the context of RNNs, dense layers are typically used after the recurrent layers to process the sequential data output by the RNN or LSTM/GRU layers and produce the final output.
-
-- **Dropout Layer:** A dropout layer randomly sets a fraction of the input units to zero during training to prevent overfitting. This helps the model generalize better to new data.
 
 ## TensorFlow Implementation
 
