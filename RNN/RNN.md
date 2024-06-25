@@ -28,28 +28,9 @@ where:
 
 Long Short-Term Memory (LSTM) networks are a type of RNN designed to capture long-range dependencies and mitigate the vanishing gradient problem. LSTMs introduce a more complex cell structure, which includes gates that regulate the flow of information.
 
-The key components of an LSTM cell include:
-
-- **Forget Gate:** $f_t = \sigma(W_f \cdot [h_{t-1}, x_t] + b_f)$
-- **Input Gate:** $i_t = \sigma(W_i \cdot [h_{t-1}, x_t] + b_i)$
-- **Cell State Update:** $\tilde{C}_t = \tanh(W_C \cdot [h_{t-1}, x_t] + b_C)$
-- **New Cell State:** $C_t = f_t \odot C_{t-1} + i_t \odot \tilde{C}_t$
-- **Output Gate:** $o_t = \sigma(W_o \cdot [h_{t-1}, x_t] + b_o)$
-- **New Hidden State:** $h_t = o_t \odot \tanh(C_t)$
-
-where $\sigma$ is the sigmoid activation function and $\odot$ denotes element-wise multiplication.
-
 ### GRU Layer
 
 Gated Recurrent Unit (GRU) is a simplified version of LSTM that combines the forget and input gates into a single update gate and merges the cell state and hidden state. This makes GRUs computationally more efficient while still addressing the vanishing gradient problem.
-
-The key components of a GRU cell include:
-
-- **Update Gate:** $z_t = \sigma(W_z \cdot [h_{t-1}, x_t] + b_z)$
-- **Reset Gate:** $r_t = \sigma(W_r \cdot [h_{t-1}, x_t] + b_r)$
-- **Candidate Activation:** $\tilde{h}_t = \tanh(W \cdot [r_t \odot h_{t-1}, x_t] + b)$
-- **New Hidden State:** $h_t = (1 - z_t) \odot h_{t-1} + z_t \odot \tilde{h}_t$
-
 
 ### Dense Layer
 
@@ -80,6 +61,7 @@ model.compile(optimizer='adam',
 ```py
 epochs = 25
 batch_size = 64
+
 model.fit(X_train, y_train, epochs=epochs, batch_size=batch_size, validation_data=(X_val, y_val))
 
 loss, accuracy = model.evaluate(X_test, y_test)
