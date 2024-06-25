@@ -1,5 +1,3 @@
-Certainly! Let's complete the lecture on Recurrent Neural Network (RNN).
-
 # Recurrent Neural Network (RNN)
 
 ## Overview
