@@ -6,7 +6,9 @@ Recurrent Neural Networks (RNNs) are a type of neural network architecture desig
 
 ## Architecture
 
-...
+### Simple Layer
+
+The basic RNN layer comprises neurons that receive input from both the current time step and the hidden state from the previous time step. The hidden state is updated at each time step based on the current input and the previous hidden state, allowing the network to maintain a memory of past inputs.
 
 <table>
     <tr>
@@ -19,9 +21,11 @@ Recurrent Neural Networks (RNNs) are a type of neural network architecture desig
     </tr>
 </table>
 
-...
-
 <table>
+    <tr>
+        <td align="center">Type</td>
+        <td align="center">Diagram</td>
+    </tr>
     <tr>
         <td align="center">One-to-one</td>
         <td><img src="/RNN/img/3.png" width="128"></td>
@@ -35,18 +39,14 @@ Recurrent Neural Networks (RNNs) are a type of neural network architecture desig
         <td><img src="/RNN/img/5.png" width="128"></td>
     </tr>
         <tr>
-        <td align="center">Many-to-many</td>
+        <td align="center">Many-to-many<br>(Target eq)</td>
         <td><img src="/RNN/img/6.png" width="128"></td>
     </tr>
         <tr>
-        <td align="center">Many-to-many</td>
+        <td align="center">Many-to-many<br>(Target neq)</td>
         <td><img src="/RNN/img/7.png" width="128"></td>
     </tr>
 </table>
-
-### Simple Layer
-
-The basic RNN layer comprises neurons that receive input from both the current time step and the hidden state from the previous time step. The hidden state is updated at each time step based on the current input and the previous hidden state, allowing the network to maintain a memory of past inputs.
 
 ### LSTM Layer
 
