@@ -6,23 +6,72 @@ Recurrent Neural Networks (RNNs) are a type of neural network architecture desig
 
 ## Architecture
 
+...
+
+<table>
+    <tr>
+        <td><img src="/RNN/img/1.png" width="512"></td>
+        <td><img src="/RNN/img/2.png" width="512"></td>
+    </tr>
+    <tr>
+        <td align="center">Architecture</td>
+        <td align="center">Single Cell</td>
+    </tr>
+</table>
+
+...
+
+<table>
+    <tr>
+        <td align="center">One-to-one</td>
+        <td><img src="/RNN/img/3.png" width="128"></td>
+    </tr>
+    <tr>
+        <td align="center">One-to-many</td>
+        <td><img src="/RNN/img/4.png" width="128"></td>
+    </tr>
+        <tr>
+        <td align="center">Many-to-one</td>
+        <td><img src="/RNN/img/5.png" width="128"></td>
+    </tr>
+        <tr>
+        <td align="center">Many-to-many</td>
+        <td><img src="/RNN/img/6.png" width="128"></td>
+    </tr>
+        <tr>
+        <td align="center">Many-to-many</td>
+        <td><img src="/RNN/img/7.png" width="128"></td>
+    </tr>
+</table>
+
 ### Simple Layer
 
-The basic RNN layer consists of neurons that not only receive input from the current time step but also from the previous time step's hidden state. The hidden state is updated at each time step based on the current input and the previous hidden state, enabling the network to maintain a memory of past inputs.
+The basic RNN layer comprises neurons that receive input from both the current time step and the hidden state from the previous time step. The hidden state is updated at each time step based on the current input and the previous hidden state, allowing the network to maintain a memory of past inputs.
 
-The mathematical formulation for the hidden state $h_t$ at time step $t$ is as follows:
+RNN models are widely used in natural language processing and speech recognition. Their applications can be categorized as follows:
 
-$$
-h_t = \tanh(W_{xh}x_t + W_{hh}h_{t-1} + b_h)
-$$
-
-where:
-- $x_t$ is the input at time step $t$,
-- $h_{t-1}$ is the hidden state from the previous time step,
-- $W_{xh}$ is the weight matrix for the input,
-- $W_{hh}$ is the weight matrix for the hidden state,
-- $b_h$ is the bias term,
-- $\tanh$ is the hyperbolic tangent activation function.
+<table>
+    <tr>
+        <td>One-to-one<br> $T_x = T_y = 1$ </td>
+        <td><img src="/RNN/img/3.png" width="128"></td>
+    </tr>
+    <tr>
+        <td>One-to-many<br> $T_x = 1, T_y > 1$ </td>
+        <td><img src="/RNN/img/4.png" width="128"></td>
+    </tr>
+    <tr>
+        <td>Many-to-one<br> $T_x > 1, T_y = 1$ </td>
+        <td><img src="path/to/RNN/img/5.png" width="128"></td>
+    </tr>
+    <tr>
+        <td>Many-to-many<br> $T_x = T_y$ </td>
+        <td><img src="path/to/RNN/img/6.png" width="128"></td>
+    </tr>
+    <tr>
+        <td>Many-to-many<br> $T_x \ne T_y$ </td>
+        <td><img src="path/to/RNN/img/7.png" width="128"></td>
+    </tr>
+</table>
 
 ### LSTM Layer
 
@@ -68,3 +117,7 @@ loss, accuracy = model.evaluate(X_test, y_test)
 print(f'Test Loss: {loss}')
 print(f'Test Accuracy: {accuracy}')
 ```
+
+## Reference
+
+- [github.com/afshinea/stanford-cs-230-deep-learning](https://github.com/afshinea/stanford-cs-230-deep-learning)
