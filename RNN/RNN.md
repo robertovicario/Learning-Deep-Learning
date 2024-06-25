@@ -48,31 +48,6 @@ Recurrent Neural Networks (RNNs) are a type of neural network architecture desig
 
 The basic RNN layer comprises neurons that receive input from both the current time step and the hidden state from the previous time step. The hidden state is updated at each time step based on the current input and the previous hidden state, allowing the network to maintain a memory of past inputs.
 
-RNN models are widely used in natural language processing and speech recognition. Their applications can be categorized as follows:
-
-<table>
-    <tr>
-        <td>One-to-one<br> $T_x = T_y = 1$ </td>
-        <td><img src="/RNN/img/3.png" width="128"></td>
-    </tr>
-    <tr>
-        <td>One-to-many<br> $T_x = 1, T_y > 1$ </td>
-        <td><img src="/RNN/img/4.png" width="128"></td>
-    </tr>
-    <tr>
-        <td>Many-to-one<br> $T_x > 1, T_y = 1$ </td>
-        <td><img src="path/to/RNN/img/5.png" width="128"></td>
-    </tr>
-    <tr>
-        <td>Many-to-many<br> $T_x = T_y$ </td>
-        <td><img src="path/to/RNN/img/6.png" width="128"></td>
-    </tr>
-    <tr>
-        <td>Many-to-many<br> $T_x \ne T_y$ </td>
-        <td><img src="path/to/RNN/img/7.png" width="128"></td>
-    </tr>
-</table>
-
 ### LSTM Layer
 
 Long Short-Term Memory (LSTM) networks are a type of RNN designed to capture long-range dependencies and mitigate the vanishing gradient problem. LSTMs introduce a more complex cell structure, which includes gates that regulate the flow of information.
