@@ -47,6 +47,11 @@ The dense layer, also known as a fully connected layer, is a traditional neural 
 
 ### Model Definition
 
+> [!NOTE]
+>
+> **Input Shape:** For a sequential model processing any sequence data, the input shape typically consists of the number of timesteps (sequence length) and the number of features per timestep (input dimension).
+>
+
 ```py
 model = Sequential()
 
@@ -65,17 +70,13 @@ model.compile(optimizer='adam',
 
 > [!NOTE]
 >
-> #### Epochs
+> **Epochs:** One epoch means that each sample in the training dataset has had an opportunity to update the model's parameters once.
 >
-> *One epoch means that each sample in the training dataset has had an opportunity to update the model's parameters once.*
+> **[!!]** If model underfits increase epochs, else if model overfits decrease epochs.
 >
-> **[!]** If model underfits increase epochs, else if model overfits decrease epochs.
+> **Batch Size:** The number of training samples used to compute a single gradient update.
 >
-> #### Batch Size
->
-> *The number of training samples used to compute a single gradient update.*
->
-> **[!]** Adjust batch size to balance training speed and model accuracy. Small batch sizes may lead to noisy training, while large batch sizes may cause overfitting.
+> **[!!]** Adjust batch size to balance training speed and model accuracy. Small batch sizes may lead to noisy training, while large batch sizes may cause overfitting.
 >
 
 ```py
