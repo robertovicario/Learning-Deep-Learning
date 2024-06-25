@@ -28,23 +28,23 @@ The basic RNN layer comprises neurons that receive input from both the current t
     </tr>
     <tr>
         <td align="center">One-to-one</td>
-        <td><img src="/RNN/img/3.png" width="128"></td>
+        <td><img src="/RNN/img/3.png" width="512"></td>
     </tr>
     <tr>
         <td align="center">One-to-many</td>
-        <td><img src="/RNN/img/4.png" width="128"></td>
+        <td><img src="/RNN/img/4.png" width="512"></td>
     </tr>
         <tr>
         <td align="center">Many-to-one</td>
-        <td><img src="/RNN/img/5.png" width="128"></td>
+        <td><img src="/RNN/img/5.png" width="512"></td>
     </tr>
         <tr>
         <td align="center">Many-to-many<br>(Target eq)</td>
-        <td><img src="/RNN/img/6.png" width="128"></td>
+        <td><img src="/RNN/img/6.png" width="512"></td>
     </tr>
         <tr>
         <td align="center">Many-to-many<br>(Target neq)</td>
-        <td><img src="/RNN/img/7.png" width="128"></td>
+        <td><img src="/RNN/img/7.png" width="512"></td>
     </tr>
 </table>
 
