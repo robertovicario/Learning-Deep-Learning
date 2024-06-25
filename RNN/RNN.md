@@ -14,8 +14,9 @@ The basic RNN layer comprises neurons that receive input from both the current t
 
 A single RNN cell consists of an input vector $x_t$, a hidden state vector $h_t$, and an output vector $y_t$. The hidden state $h_t$ is updated based on the previous hidden state $h_{t-1}$ and the current input $x_t$. The update process can be described mathematically as follows:
 
-$$h_t = \sigma(W_h \cdot h_{t-1} + W_x \cdot x_t + b_h)$$
-$$y_t = W_y \cdot h_t + b_y$$
+$$\boxed{h_t = \sigma(W_h \cdot h_{t-1} + W_x \cdot x_t + b_h)}$$
+
+$$\boxed{y_t = W_y \cdot h_t + b_y}$$
 
 where $\sigma$ is a non-linear activation function, $W_h$, $W_x$, and $W_y$ are weight matrices, and $b_h$ and $b_y$ are bias vectors.
 
