@@ -20,6 +20,7 @@ $$\boxed{y_t = W_y \cdot h_t + b_y}$$
 
 where $\sigma$ is a non-linear activation function, $W_h$, $W_x$, and $W_y$ are weight matrices, and $b_h$ and $b_y$ are bias vectors.
 
+<br>
 <table>
     <tr>
         <td><img src="/RNN/img/1.png" width="512"></td>
