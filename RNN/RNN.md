@@ -67,14 +67,16 @@ model.compile(optimizer='adam',
 
 ### Training and Evaluation
 
+> ![NOTE]
+>
 > **Epochs:** One epoch means that each sample in the training dataset has had an opportunity to update the model's parameters once.
 >
-> ![NOTE]
 > If model underfits increase epochs, else if model overfits decrease epochs.
+
+> ![NOTE]
 >
 > **Batch Size:** The number of training samples used to compute a single gradient update.
 >
-> ![NOTE]
 > Adjust batch size to balance training speed and model accuracy. Small batch sizes may lead to noisy training, while large batch sizes may cause overfitting.
 
 ```py
