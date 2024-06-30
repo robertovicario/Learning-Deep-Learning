@@ -23,9 +23,7 @@ The convolutional layer is the core building block of a CNN. It applies a convol
 
 Mathematically:
 
-$$(f * g)(i, j) = \sum_{m} \sum_{n} f(m, n) \cdot g(i - m, j - n)$$
-
-where $f$ is the input image, $g$ is the filter (or kernel), and $(i, j)$ are the coordinates of the output pixel.
+$$...$$
 
 The key concepts in convolutional layers include:
 
@@ -52,13 +50,12 @@ The pooling layer reduces the spatial dimensions of the activation maps, which h
 
 Mathematically:
 
-$$ y(i, j) = \phi x(s \cdot i + m, s \cdot j + n) $$
-
-where $y(i, j)$ is the output, $\phi$ is the pooling function, $x$ is the input, $k$ is the size of the pooling window, and $s$ is the stride.
+$$...$$
 
 Pooling functions include:
 
 - **Max Pooling:** Selects the maximum value from each patch of the feature map.
+
 - **Average Pooling:** Computes the average value of each patch of the feature map.
 
 <table>
@@ -78,9 +75,7 @@ The fully connected layer connects every neuron in one layer to every neuron in 
 
 Mathematically:
 
-$$y = f(Wx + b)$$
-
-Where $y$ is the output vector, $x$ is the input vector, $W$ is the weight matrix, $b$ is the bias vector, and $f$ is the activation function.
+$$...$$
 
 <table>
     <tr>
