@@ -43,14 +43,6 @@ The activation function $\phi$ is then applied to $z_j$:
 
 $$a_j = \phi(z_j)$$
 
-Common activation functions include:
-
-- **ReLU:** $\phi(z) = \max(0, z)$
-
-- **Sigmoid:** $\phi(z) = \frac{1}{1 + e^{-z}}$
-
-- **Tanh:** $\phi(z) = \tanh(z) = \frac{e^z - e^{-z}}{e^z + e^{-z}}$
-
 ### Output Layer
 
 The output layer is the final layer in the MLP and is responsible for producing the final output of the network. The number of nodes in this layer corresponds to the number of classes in a classification problem or the number of output values in a regression problem.
