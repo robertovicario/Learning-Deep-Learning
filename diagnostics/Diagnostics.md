@@ -15,9 +15,9 @@ The bias-variance tradeoff is a fundamental concept in machine learning that des
 <table>
     <tr>
         <td></td>
-        <td>Underfitting</td>
-        <td>Just Right</td>
-        <td>Overfitting</td>
+        <td><strong>Underfitting</strong></td>
+        <td><strong>Just Right</strong></td>
+        <td><strong>Overfitting</strong></td>
     </tr>
     <tr>
         <td align="center"><strong>Symptoms</strong></td>
