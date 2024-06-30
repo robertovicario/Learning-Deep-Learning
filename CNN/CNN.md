@@ -2,11 +2,11 @@
 
 ## Overview
 
-Convolutional Neural Networks (CNNs) are a class of deep learning models specifically designed to process data that has a grid-like topology, such as images. They are particularly effective for tasks like image classification, object detection, and segmentation. CNNs have limitations, they require large amounts of labeled data and significant computational resources for training.
+... capabilities, limitations
 
 ## Architecture
 
-A typical CNN architecture consists of several key layers that transform the input image into an output class score.
+... layers, neuron roles
 
 <table>
     <tr>
@@ -19,23 +19,21 @@ A typical CNN architecture consists of several key layers that transform the inp
 
 ### Convolutional Layer
 
-The convolutional layer is the core building block of a CNN. It applies a convolution operation to the input, passing the result to the next layer.
+The convolutional layer is the core building block of a CNN. It applies a convolution operation to the input, passing the result to the next layer. The key concepts in convolutional layers include:
 
-The convolution operation for a given input $I$ and a filter $K$ is defined as:
+**Receptive Fields:** The receptive field is the region of the input image that affects a particular output value. For a given layer, the receptive field $R$ is determined by the size of the filter and the cumulative stride and padding of all preceding layers.
 
-$$(I * K)(i,j) = \sum_{m}\sum_{n} I(i-m,j-n)K(m,n)$$
+**Stride:** The stride is the step size with which the convolution filter moves across the input image. A larger stride reduces the spatial dimensions of the output. If the stride is $s$, the position of the filter is moved by $s$ units each time. The output dimension $O$ for an input dimension $I$, filter size $F$, and stride $s$ is given by:
 
-Where $(i, j)$ are the coordinates of the output matrix.
+$$O = \left\lfloor \frac{I - F}{s} \right\rfloor + 1$$
 
-The key concepts in convolutional layers include:
+**Padding:** Padding involves adding extra pixels around the input image to control the spatial size of the output. Common padding strategies include "valid" (no padding) and "same" (padding to keep the output size equal to the input size). For an input dimension $I$, filter size $F$, stride $s$, and padding $P$, the output dimension $O$ is given by:
 
-- **Receptive Fields:** The receptive field is the region of the input image that affects a particular output value. In CNNs, neurons in early layers have small receptive fields, while neurons in deeper layers have larger receptive fields.
+$$O = \left\lfloor \frac{I + 2P - F}{s} \right\rfloor + 1$$
 
-- **Activation Maps:** After applying the convolution operation, the resulting output is called an activation map (or feature map), which highlights the presence of features in the input.
+**Activation Maps:** After applying the convolution operation, the resulting output is called an activation map (or feature map), which highlights the presence of features in the input. If $f$ is the filter applied to an input $I$, the activation map $A$ at position $(i, j)$ is given by:
 
-- **Stride:** The stride is the step size with which the convolution filter moves across the input image. A larger stride reduces the spatial dimensions of the output.
-
-- **Padding:** Padding involves adding extra pixels around the input image to control the spatial size of the output. Common padding strategies include "valid" (no padding) and "same" (padding to keep the output size equal to the input size).
+$$A(i, j) = (I * f)(i, j) = \sum_{m} \sum_{n} I(i+m, j+n) f(m, n)$$
 
 <table>
     <tr>
@@ -50,15 +48,13 @@ The key concepts in convolutional layers include:
 
 The pooling layer reduces the spatial dimensions of the activation maps, which helps decrease the computational load and the number of parameters. Pooling operations include:
 
-- **Max Pooling:** Selects the maximum value from each patch of the feature map.
+**Max Pooling:** Selects the maximum value from each patch of the feature map. For a pooling window of size $p \times p$ at position $(i, j)$, the output $P_{max}(i, j)$ is:
 
-- **Average Pooling:** Computes the average value of each patch of the feature map.
+$$P_{max}(i, j) = \max \{ A(i + m, j + n) \mid 0 \leq m, n < p \}$$
 
-For max pooling with a pool size of $p \times p$:
+**Average Pooling:** Computes the average value of each patch of the feature map. For a pooling window of size $p \times p$ at position $(i, j)$, the output $P_{avg}(i, j)$ is:
 
-$$P(i,j) = \max \{ I(m,n) : (m,n) \in \text{window}(i,j) \}$$
-
-Where $\text{window}(i,j)$ defines the $p \times p$ region over which the maximum is taken.
+$$P_{avg}(i, j) = \frac{1}{p^2} \sum_{m=0}^{p-1} \sum_{n=0}^{p-1} A(i + m, j + n)$$
 
 <table>
     <tr>
@@ -73,13 +69,9 @@ Where $\text{window}(i,j)$ defines the $p \times p$ region over which the maximu
 
 ### Fully Connected Layer
 
-The fully connected layer connects every neuron in one layer to every neuron in the next layer. This layer is typically used at the end of the network to combine features learned by convolutional and pooling layers and to produce the final output.
+The fully connected layer connects every neuron in one layer to every neuron in the next layer. This layer is typically used at the end of the network to combine features learned by convolutional and pooling layers and to produce the final output. If $\mathbf{x}$ is the input vector to a fully connected layer, $\mathbf{W}$ is the weight matrix, and $\mathbf{b}$ is the bias vector, the output $\mathbf{y}$ is given by:
 
-The output of a fully connected layer is calculated as:
-
-$$y = Wx + b$$
-
-Where $y$ is the output vector, $W$ is the weight matrix, $x$ is the input vector, and $b$ is the bias vector.
+$$\mathbf{y} = \mathbf{W} \mathbf{x} + \mathbf{b}$$
 
 <table>
     <tr>
@@ -95,19 +87,56 @@ Where $y$ is the output vector, $W$ is the weight matrix, $x$ is the input vecto
 ### Model Definition
 
 ```py
+model = Sequential()
 
+model.add(Flatten(input_shape=input_shape))  # Input Layer
+
+# Hidden Layers
+model.add(Dense(128, activation='relu'))
+model.add(Dense(64, activation='relu'))
+
+model.add(Dense(num_classes, activation='softmax'))  # Output Layer
+
+model.compile(optimizer='adam',
+              loss='categorical_crossentropy',
+              metrics=['accuracy'])
 ```
 
 ### Training and Evaluation
 
 ```py
+history = model.fit(X_train, y_train,
+                    epochs=epochs,
+                    batch_size=batch_size,
+                    validation_split=0.2)
 
+loss, accuracy = model.evaluate(X_test, y_test)
+print(f'Test Loss: {loss}')
+print(f'Test Accuracy: {accuracy}')
 ```
 
 ### Plot History
 
 ```py
+plt.figure(figsize=(12, 6))
 
+plt.subplot(1, 2, 1)
+plt.plot(history.history['loss'], label='Train Loss')
+plt.plot(history.history['val_loss'], label='Validation Loss')
+plt.title('Model Loss')
+plt.xlabel('Epoch')
+plt.ylabel('Loss')
+plt.legend(loc='upper right')
+
+plt.subplot(1, 2, 2)
+plt.plot(history.history['accuracy'], label='Train Accuracy')
+plt.plot(history.history['val_accuracy'], label='Validation Accuracy')
+plt.title('Model Accuracy')
+plt.xlabel('Epoch')
+plt.ylabel('Accuracy')
+plt.legend(loc='lower right')
+
+plt.show()
 ```
 
 ## Reference
