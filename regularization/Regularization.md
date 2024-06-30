@@ -70,3 +70,7 @@ Early stopping is a technique to stop training the neural network once the perfo
 ```py
 early_stopping = EarlyStopping(monitor='val_loss', patience=5, restore_best_weights=True)  # Early Stopping
 ```
+
+## Reference
+
+- [github.com/afshinea/stanford-cs-230-deep-learning](https://github.com/afshinea/stanford-cs-230-deep-learning)
