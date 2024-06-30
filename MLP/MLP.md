@@ -8,7 +8,7 @@ A Multi-Layer Perceptron (MLP) is a type of artificial neural network consisting
 
 <table>
     <tr>
-        <td><img src="https://raw.githubusercontent.com/robertovicario/Learning-Deep-Learning/MLP/MLP/img/1.png" width="512"></td>
+        <td><img src="/MLP/img/1.png" width="512"></td>
     </tr>
     <tr>
         <td align="center">Architecture</td>
