@@ -20,49 +20,51 @@ A confusion matrix is a table used to evaluate the performance of a classificati
     </tr>
     <tr>
         <td><strong>Actual</strong></td>
-        <td bgcolor="green">True Positives (TP)</td>
-        <td bgcolor="red">False Negatives (FN)</td>
+        <td>True Positives<br>(TP)</td>
+        <td>False Negatives<br>(FN)</td>
     </tr>
     <tr>
         <td><strong>Actual</strong></td>
-        <td bgcolor="red">False Positives (FP)</td>
-        <td bgcolor="green">True Negatives (TN)</td>
+        <td>False Positives<br>(FP)</td>
+        <td>True Negatives<br>(TN)</td>
     </tr>
 </table>
 
-### Metrics
+### Accuracy
 
-Several metrics can be derived from the confusion matrix to evaluate the model's performance.
-
-**Accuracy:** Measures the proportion of correctly predicted instances out of the total instances:
+Measures the proportion of correctly predicted instances out of the total instances:
 
 $$\text{Accuracy} = \frac{TP + TN}{TP + TN + FP + FN}$$
 
-**Precision:** Indicates the proportion of positive identifications that were actually correct:
+### Precision
+
+Indicates the proportion of positive identifications that were actually correct:
 
 $$\text{Precision} = \frac{TP}{TP + FP}$$
 
-**Recall:** Measures the proportion of actual positives that were correctly identified:
+### Recall (Sensitivity)
+
+Measures the proportion of actual positives that were correctly identified:
 
 $$\text{Recall} = \frac{TP}{TP + FN}$$
 
-**F1 Score:** The harmonic mean of precision and recall, providing a single metric that balances both:
+### Specificity
+
+Indicates the proportion of actual negatives that were correctly identified:
+
+$$\text{Specificity} = \frac{TN}{TN + FP}$$
+
+### F1 Score
+
+The harmonic mean of precision and recall, providing a single metric that balances both:
 
 $$\text{F1 Score} = 2 \times \frac{\text{Precision} \times \text{Recall}}{\text{Precision} + \text{Recall}}$$
 
-### ROC
+### Receiver Operating Characteristic (ROC)
 
-Receiver Operating Characteristic (ROC) curves plot the True Positive Rate (TPR) against the False Positive Rate (FPR) at various threshold settings. The ROC curve illustrates the trade-off between sensitivity and specificity.
+Receiver Operating Characteristic (ROC) curves plot the Sensitivity against the Specificity (Recall) at various threshold settings. The ROC curve illustrates the trade-off between sensitivity and specificity.
 
-**True Positive Rate (TPR):** Also known as recall:
-
-$$\text{TPR} = \frac{TP}{TP + FN}$$
-
-**False Positive Rate (FPR):** Measures the proportion of actual negatives that were incorrectly classified as positive:
-
-$$\text{FPR} = \frac{FP}{FP + TN}$$
-
-### AUC
+### Area Under the ROC Curve (AUC)
 
 The Area Under the ROC Curve (AUC) provides a single value to summarize the performance of the model. AUC ranges from 0 to 1, with higher values indicating better performance.
 
@@ -74,6 +76,46 @@ The Area Under the ROC Curve (AUC) provides a single value to summarize the perf
     <td align="center">AUC</td>
 </tr>
 </table>
+
+## Regression Metrics
+
+Regression metrics are used to evaluate the performance of regression algorithms, which predict continuous values. Understanding these metrics helps in determining how well the model captures the underlying patterns in the data.
+
+### Total Sum of Squares (SST)
+
+The Total Sum of Squares (SST) measures the total variance in the response variable $y$. It represents the total variability of the observed data points from their mean:
+
+$$SS_{tot} = \sum_{i=1}^{m} (y_i - \bar{y})^2$$
+
+Where:
+
+- $y_i$ is the observed value.
+
+- $\bar{y}$ is the mean of the observed values.
+
+- $m$ is the number of observations.
+
+### Explained Sum of Squares (SSR)
+
+The Explained Sum of Squares (SSR) measures the amount of variance explained by the regression model. It represents the reduction in variability of $y$ due to the model:
+
+$$SS_{reg} = \sum_{i=1}^{m} (f(x_i) - \bar{y})^2$$
+
+Where:
+
+- $f(x_i)$ is the predicted value.
+
+### Residual Sum of Squares (SSE)
+
+The Residual Sum of Squares (SSE) measures the variance that is not explained by the regression model. It represents the discrepancy between the observed data and the predicted values:
+
+$$SS_{res} = \sum_{i=1}^{m} (y_i - f(x_i))^2$$
+
+### Coefficient of Determination
+
+The Coefficient of Determination, denoted as $R^2$, is a statistical measure that indicates the proportion of the variance in the dependent variable that is predictable from the independent variables. It provides an indication of goodness of fit and is a value between 0 and 1:
+
+$$R^2 = 1 - \frac{SS_{res}}{SS_{tot}}$$
 
 ## Reference
 
