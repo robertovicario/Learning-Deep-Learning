@@ -7,19 +7,19 @@ from tensorflow.keras.datasets import mnist
 from tensorflow.keras.utils import to_categorical
 
 # Sample Preprocessing
-(train_images, train_labels), (test_images, test_labels) = mnist.load_data()
+(X_train, y_train), (X_test, y_test) = mnist.load_data()
 
-train_images = train_images.astype('float32') / 255
-test_images = test_images.astype('float32') / 255
+X_train = X_train.astype('float32') / 255
+X_test = X_test.astype('float32') / 255
 
-train_images = train_images.reshape((train_images.shape[0], -1))
-test_images = test_images.reshape((test_images.shape[0], -1))
+X_train = X_train.reshape((X_train.shape[0], -1))
+X_test = X_test.reshape((X_test.shape[0], -1))
 
-train_labels = to_categorical(train_labels)
-test_labels = to_categorical(test_labels)
+y_train = to_categorical(y_train)
+y_test = to_categorical(y_test)
 
-input_shape = (train_images.shape[1],)
-num_classes = train_labels.shape[1]
+input_shape = (X_train.shape[1],)
+num_classes = y_train.shape[1]
 
 # Model Definition
 model = Sequential()
@@ -40,9 +40,9 @@ model.compile(optimizer='adam',
 epochs = 20
 batch_size = 128
 
-history = model.fit(train_images, train_labels, epochs=epochs, batch_size=batch_size, validation_split=0.2)
+history = model.fit(X_train, y_train, epochs=epochs, batch_size=batch_size, validation_split=0.2)
 
-loss, accuracy = model.evaluate(test_images, test_labels)
+loss, accuracy = model.evaluate(X_test, y_test)
 print(f'Test Loss: {loss}')
 print(f'Test Accuracy: {accuracy}')
 
