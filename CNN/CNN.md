@@ -2,9 +2,22 @@
 
 ## Overview
 
-Convolutional Neural Networks (CNNs) are a class of deep neural networks commonly used for analyzing visual imagery. They are inspired by the structure and function of the human visual cortex and are particularly well-suited for image classification, object detection, and other tasks involving grid-like data. CNNs leverage three main ideas: local receptive fields, shared weights, and spatial subsampling, to achieve high performance on tasks involving visual data.
+...
+
+capabilities, limitations
 
 ## Architecture
+
+...
+
+<table>
+    <tr>
+        <td><img src="/CNN/img/1.png" width="512"></td>
+    </tr>
+    <tr>
+        <td align="center">Architecture</td>
+    </tr>
+</table>
 
 ### Convolutional Layer
 
@@ -30,33 +43,16 @@ The pooling layer reduces the spatial dimensions of the activation maps, which h
 
 The dense layer, or fully connected layer, connects every neuron in one layer to every neuron in the next layer. This layer is typically used at the end of the network to combine features learned by convolutional and pooling layers and to produce the final output. Dense layers are often followed by an activation function, such as ReLU (Rectified Linear Unit) or softmax, depending on the task.
 
-- **Dropout Layer:** A dropout layer randomly sets a fraction of the input units to zero during training to prevent overfitting. This helps the model generalize better to new data.
-
 ## TensorFlow Implementation
 
 ### Model Definition
 
 ```py
-model = models.Sequential([
-    layers.Conv2D(32, (3, 3), activation='relu', input_shape=(28, 28, 1)),
-    layers.MaxPooling2D((2, 2)),
-    layers.Conv2D(64, (3, 3), activation='relu'),
-    layers.MaxPooling2D((2, 2)),
-    layers.Conv2D(64, (3, 3), activation='relu'),
-    layers.Flatten(),
-    layers.Dense(64, activation='relu'),
-    layers.Dense(10, activation='softmax')
-])
-
-model.compile(optimizer='adam',
-              loss='sparse_categorical_crossentropy',
-              metrics=['accuracy'])
 
 ```
 
 ### Training and Evaluation
 
 ```py
-model.fit(x_train, y_train, epochs=5, validation_data=(x_test, y_test))
-test_loss, test_acc = model.evaluate(x_test, y_test, verbose=2)
+
 ```
