@@ -57,7 +57,7 @@ The output layer is the final layer in the MLP and is responsible for producing 
 
 For a classification task, the output layer often uses the softmax activation function:
 
-$$\text{softmax}(z_k) = \frac{e^{z_k}}{\sum_{j=1}^{K} e^{z_j}}$$
+$$\text{softmax}(z_k) = \exp(z_k) \cdot \left( \sum_{j=1}^{K} \exp(z_j) \right)^{-1}$$
 
 where $z_k$ is the input to the $k$-th output neuron and $K$ is the number of output neurons.
 
