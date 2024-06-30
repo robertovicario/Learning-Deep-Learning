@@ -47,14 +47,6 @@ $$a_j = \phi(z_j)$$
 
 The output layer is the final layer in the MLP and is responsible for producing the final output of the network. The number of nodes in this layer corresponds to the number of classes in a classification problem or the number of output values in a regression problem.
 
-For a classification task, the output layer often uses the softmax activation function:
-
-$$\text{softmax}(z_k) = \exp(z_k) \cdot \left( \sum_{j=1}^{K} \exp(z_j) \right)^{-1}$$
-
-where $z_k$ is the input to the $k$-th output neuron and $K$ is the number of output neurons.
-
-For a regression task, the output layer may use a linear activation function:
-
 $$a_k = z_k$$
 
 ## TensorFlow Implementation
