@@ -96,7 +96,10 @@ model.compile(optimizer='adam',
 epochs = ...
 batch_size = ...
 
-history = model.fit(train_images, train_labels, epochs=epochs, batch_size=batch_size, validation_split=0.2)
+history = model.fit(X_train, y_train,
+                    epochs=epochs,
+                    batch_size=batch_size,
+                    validation_split=0.2)
 
 loss, accuracy = model.evaluate(X_test, y_test)
 print(f'Test Loss: {loss}')

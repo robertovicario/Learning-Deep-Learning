@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 from tensorflow.keras.datasets import mnist
 from tensorflow.keras.utils import to_categorical
 
-# Sample Preprocessing
+# MNIST Preprocessing
 (X_train, y_train), (X_test, y_test) = mnist.load_data()
 
 X_train = X_train.astype('float32') / 255
@@ -40,7 +40,10 @@ model.compile(optimizer='adam',
 epochs = 20
 batch_size = 128
 
-history = model.fit(X_train, y_train, epochs=epochs, batch_size=batch_size, validation_split=0.2)
+history = model.fit(X_train, y_train,
+                    epochs=epochs,
+                    batch_size=batch_size,
+                    validation_split=0.2)
 
 loss, accuracy = model.evaluate(X_test, y_test)
 print(f'Test Loss: {loss}')
