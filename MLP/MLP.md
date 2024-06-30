@@ -5,25 +5,8 @@
 
 A Multi-Layer Perceptron (MLP) is a class of feedforward artificial neural network (ANN). An MLP consists of at least three layers of nodes: an input layer, a hidden layer, and an output layer. Except for the input nodes, each node is a neuron that uses a nonlinear activation function. MLP utilizes a supervised learning technique called backpropagation for training.
 
-Capabilities:
+## Architecture
 
-- **Universal Approximation:** MLPs are capable of approximating any continuous function, given enough neurons in the hidden layers. This makes them highly flexible for a wide range of tasks.
-
-- **Non-linear Modeling:** Through the use of non-linear activation functions, MLPs can model complex relationships in the data.
-
-- **Feature Extraction:** MLPs can automatically learn to extract features from raw data, reducing the need for manual feature engineering.
-
-- **Versatility:** MLPs can be applied to a variety of problems including classification, regression, and even complex tasks like speech recognition and image processing.
-
-Limitations:
-
-- **Computational Complexity:** Training MLPs, especially with large datasets and many layers, can be computationally intensive.
-
-- **Overfitting:** MLPs can overfit to the training data, especially if the model is too complex or the training data is limited.
-
-- **Black Box Nature:** The internal workings of MLPs are often not interpretable, making it difficult to understand how decisions are being made.
-
-- **Requirement for Large Datasets:** To achieve good generalization, MLPs often require large amounts of labeled data for training.
 
 ## Learning Algorithm
 
