@@ -72,9 +72,6 @@ $$a_k = z_k$$
 ```py
 model = Sequential()
 
-input_shape = (timesteps, input_dim)
-output_dim = num_classes
-
 # Input Layer
 model.add(Flatten(input_shape=input_shape))
 
@@ -93,9 +90,6 @@ model.compile(optimizer='adam',
 ### Training and Evaluation
 
 ```py
-epochs = ...
-batch_size = ...
-
 history = model.fit(X_train, y_train,
                     epochs=epochs,
                     batch_size=batch_size,
