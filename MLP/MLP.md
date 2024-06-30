@@ -35,10 +35,6 @@ The output layer is the final layer in the MLP and is responsible for producing 
 
 ### Model Definition
 
-> [!NOTE]
->
-> **Input Shape:** For a sequential model processing any sequence data, the input shape typically consists of the number of timesteps (sequence length) and the number of features per timestep (input dimension).
-
 ```py
 model = Sequential()
 
@@ -62,18 +58,6 @@ model.compile(optimizer='adam',
 ```
 
 ### Training and Evaluation
-
-> [!NOTE]
->
-> **Epochs:** One epoch means that each sample in the training dataset has had an opportunity to update the model's parameters once.
->
-> If model underfits increase epochs, else if model overfits decrease epochs.
-
-> [!NOTE]
->
-> **Batch Size:** The number of training samples used to compute a single gradient update.
->
-> Adjust batch size to balance training speed and model accuracy. Small batch sizes may lead to noisy training, while large batch sizes may cause overfitting.
 
 ```py
 epochs = ...
@@ -109,28 +93,3 @@ plt.legend(loc='lower right')
 
 plt.show()
 ```
-
-## Model Evaluation
-
-<table>
-    <tr>
-        <td><img src="/MLP/img/2.png" width="512"></td>
-    </tr>
-    <tr>
-        <td align="center">Model Evaluation</td>
-    </tr>
-</table>
-
----
-
-### Model Loss
-
-- **Train Loss:** The training loss decreases steadily from above 0.5 to below 0.05, indicating that the model is learning well during the training phase.
-
-- **Validation Loss:** The validation loss also decreases, although it starts lower than the training loss and plateaus around the same value as the training loss after about 5 epochs. This suggests that the model is generalizing well to the validation data without significant overfitting.
-
-### Model Accuracy
-
-- **Train Accuracy:** The training accuracy increases sharply at the beginning and then more gradually, reaching around 96% by the end of the training period.
-
-- **Validation Accuracy:** The validation accuracy also improves rapidly at the beginning and reaches about 98%, slightly higher than the training accuracy, indicating good generalization.
