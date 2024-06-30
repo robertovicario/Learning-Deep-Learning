@@ -47,8 +47,6 @@ $$a_j = \phi(z_j)$$
 
 The output layer is the final layer in the MLP and is responsible for producing the final output of the network. The number of nodes in this layer corresponds to the number of classes in a classification problem or the number of output values in a regression problem.
 
-$$a_k = z_k$$
-
 ## TensorFlow Implementation
 
 ### Model Definition
