@@ -114,12 +114,14 @@ plt.show()
 
 <table>
     <tr>
-        <td><img src="/MLP/img/1.png" width="512"></td>
+        <td><img src="/MLP/img/2.png" width="512"></td>
     </tr>
     <tr>
         <td align="center">Model Evaluation</td>
     </tr>
 </table>
+
+---
 
 ### Model Loss
 
