@@ -62,12 +62,12 @@ Where $\text{window}(i,j)$ defines the $p \times p$ region over which the maximu
 
 <table>
     <tr>
-        <td align="center">Max Pooling</td>
-        <td align="center">Average Pooling</td>
-    </tr>
-    <tr>
         <td><img src="/CNN/img/3.png" width="256"></td>
         <td><img src="/CNN/img/4.png" width="256"></td>
+    </tr>
+    <tr>
+        <td align="center">Max Pooling</td>
+        <td align="center">Average Pooling</td>
     </tr>
 </table>
 
