@@ -94,6 +94,4 @@ plt.show()
 
 ## Reference
 
-- [Stanford CS221 Artificial Intelligence Cheatsheet](https://stanford.edu/~shervine/teaching/cs-221) by Afshine Amidi and Shervine Amidi
-- [Stanford CS229 Machine Learning Cheatsheet](https://stanford.edu/~shervine/teaching/cs-229) by Afshine Amidi and Shervine Amidi
 - [Stanford CS230 Deep Learning Cheatsheet](https://stanford.edu/~shervine/teaching/cs-230) by Afshine Amidi and Shervine Amidi
