@@ -25,15 +25,15 @@ The convolutional layer is the core building block of a CNN. It applies a convol
 
 **Stride:** The stride is the step size with which the convolution filter moves across the input image. A larger stride reduces the spatial dimensions of the output. If the stride is $s$, the position of the filter is moved by $s$ units each time. The output dimension $O$ for an input dimension $I$, filter size $F$, and stride $s$ is given by:
 
-$$O = \left\lfloor \frac{I - F}{s} \right\rfloor + 1$$
+$$\boxed{O = \left\lfloor \frac{I - F}{s} \right\rfloor + 1}$$
 
 **Padding:** Padding involves adding extra pixels around the input image to control the spatial size of the output. Common padding strategies include "valid" (no padding) and "same" (padding to keep the output size equal to the input size). For an input dimension $I$, filter size $F$, stride $s$, and padding $P$, the output dimension $O$ is given by:
 
-$$O = \left\lfloor \frac{I + 2P - F}{s} \right\rfloor + 1$$
+$$\boxed{O = \left\lfloor \frac{I + 2P - F}{s} \right\rfloor + 1}$$
 
 **Activation Maps:** After applying the convolution operation, the resulting output is called an activation map (or feature map), which highlights the presence of features in the input. If $f$ is the filter applied to an input $I$, the activation map $A$ at position $(i, j)$ is given by:
 
-$$A(i, j) = (I * f)(i, j) = \sum_{m} \sum_{n} I(i+m, j+n) f(m, n)$$
+$$\boxed{A(i, j) = (I * f)(i, j) = \sum_{m} \sum_{n} I(i+m, j+n) f(m, n)}$$
 
 <table>
     <tr>
@@ -50,11 +50,11 @@ The pooling layer reduces the spatial dimensions of the activation maps, which h
 
 **Max Pooling:** Selects the maximum value from each patch of the feature map. For a pooling window of size $p \times p$ at position $(i, j)$, the output $P_{max}(i, j)$ is:
 
-$$P_{max}(i, j) = \max \{ A(i + m, j + n) \mid 0 \leq m, n < p \}$$
+$$\boxed{P_{max}(i, j) = \max \{ A(i + m, j + n) \mid 0 \leq m, n < p \}}$$
 
 **Average Pooling:** Computes the average value of each patch of the feature map. For a pooling window of size $p \times p$ at position $(i, j)$, the output $P_{avg}(i, j)$ is:
 
-$$P_{avg}(i, j) = \frac{1}{p^2} \sum_{m=0}^{p-1} \sum_{n=0}^{p-1} A(i + m, j + n)$$
+$$\boxed{P_{avg}(i, j) = \frac{1}{p^2} \sum_{m=0}^{p-1} \sum_{n=0}^{p-1} A(i + m, j + n)}$$
 
 <table>
     <tr>
@@ -71,7 +71,7 @@ $$P_{avg}(i, j) = \frac{1}{p^2} \sum_{m=0}^{p-1} \sum_{n=0}^{p-1} A(i + m, j + n
 
 The fully connected layer connects every neuron in one layer to every neuron in the next layer. This layer is typically used at the end of the network to combine features learned by convolutional and pooling layers and to produce the final output. If $\mathbf{x}$ is the input vector to a fully connected layer, $\mathbf{W}$ is the weight matrix, and $\mathbf{b}$ is the bias vector, the output $\mathbf{y}$ is given by:
 
-$$\mathbf{y} = \mathbf{W} \mathbf{x} + \mathbf{b}$$
+$$\boxed{\mathbf{y} = \mathbf{W} \mathbf{x} + \mathbf{b}}$$
 
 <table>
     <tr>
