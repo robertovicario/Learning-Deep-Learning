@@ -27,20 +27,20 @@ The bias-variance tradeoff is a fundamental concept in machine learning that des
     </tr>
     <tr>
         <td align="center"><strong>Classification</strong></td>
-        <td><img src="/diagnostics/img/1.png" width="128"></td>
-        <td><img src="/diagnostics/img/2.png" width="128"></td>
-        <td><img src="/diagnostics/img/3.png" width="128"></td>
+        <td align="center"><img src="/diagnostics/img/1.png" width="128"></td>
+        <td align="center"><img src="/diagnostics/img/2.png" width="128"></td>
+        <td align="center"><img src="/diagnostics/img/3.png" width="128"></td>
     </tr>
     <tr>
         <td align="center"><strong>Regression</strong></td>
-        <td><img src="/diagnostics/img/4.png" width="128"></td>
-        <td><img src="/diagnostics/img/5.png" width="128"></td>
-        <td><img src="/diagnostics/img/6.png" width="128"></td>
+        <td align="center"><img src="/diagnostics/img/4.png" width="128"></td>
+        <td align="center"><img src="/diagnostics/img/5.png" width="128"></td>
+        <td align="center"><img src="/diagnostics/img/6.png" width="128"></td>
     </tr>
     <tr>
         <td align="center"><strong>Deep Learning</strong></td>
-        <td><img src="/diagnostics/img/7.png" width="128"></td>
-        <td><img src="/diagnostics/img/8.png" width="128"></td>
-        <td><img src="/diagnostics/img/9.png" width="128"></td>
+        <td align="center"><img src="/diagnostics/img/7.png" width="128"></td>
+        <td align="center"><img src="/diagnostics/img/8.png" width="128"></td>
+        <td align="center"><img src="/diagnostics/img/9.png" width="128"></td>
     </tr>
 </table>
