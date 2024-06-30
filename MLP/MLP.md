@@ -15,6 +15,8 @@ A Multi-Layer Perceptron (MLP) is a class of feedforward artificial neural netwo
     </tr>
 </table>
 
+---
+
 ### Input Layer
 
 The input layer is the first layer in the MLP and is responsible for receiving the input data. The number of nodes in this layer corresponds to the number of features in the input dataset. Each node in the input layer passes the input data to the next layer without any transformation.
