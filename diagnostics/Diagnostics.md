@@ -24,18 +24,19 @@ The bias-variance tradeoff is a fundamental concept in machine learning that des
         <td>High bias, low variance. Poor performance on both training and test data. Model is too simple to capture underlying patterns.</td>
         <td>Balanced bias and variance. Good performance on both training and test data. Model complexity matches the complexity of the data.</td>
         <td>Low bias, high variance. Good performance on training data but poor performance on test data. Model is too complex and captures noise.</td>
+    <tr>
+    <tr>
+        <td align="center"><strong>Classification</strong></td>
+        <td align="center"><img src="/diagnostics/img/1.png" width="128"></td>
+        <td align="center"><img src="/diagnostics/img/2.png" width="128"></td>
+        <td align="center"><img src="/diagnostics/img/3.png" width="128"></td>
+    </tr>
     </tr>
         <tr>
         <td align="center"><strong>Regression</strong></td>
         <td align="center"><img src="/diagnostics/img/4.png" width="128"></td>
         <td align="center"><img src="/diagnostics/img/5.png" width="128"></td>
         <td align="center"><img src="/diagnostics/img/6.png" width="128"></td>
-    </tr>
-    <tr>
-        <td align="center"><strong>Classification</strong></td>
-        <td align="center"><img src="/diagnostics/img/1.png" width="128"></td>
-        <td align="center"><img src="/diagnostics/img/2.png" width="128"></td>
-        <td align="center"><img src="/diagnostics/img/3.png" width="128"></td>
     </tr>
     <tr>
         <td align="center"><strong>Deep Learning</strong></td>
