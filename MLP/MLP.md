@@ -13,7 +13,7 @@ The architecture of a Multi-Layer Perceptron (MLP) consists of an input layer, h
 <br>
 <table>
     <tr>
-        <td><img src="/MLP/img/1.png" width="256"></td>
+        <td><img src="/MLP/img/1.png" width="512"></td>
     </tr>
     <tr>
         <td align="center">Architecture</td>
