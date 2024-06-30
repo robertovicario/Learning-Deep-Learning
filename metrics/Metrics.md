@@ -119,4 +119,4 @@ $$R^2 = 1 - \frac{SS_{res}}{SS_{tot}}$$
 
 ## Reference
 
-- [Stanford CS230 Machine Learning Cheatsheet](https://stanford.edu/~shervine/teaching/cs-229) by Afshine Amidi and Shervine Amidi
+- [Stanford CS229 Machine Learning Cheatsheet](https://stanford.edu/~shervine/teaching/cs-229) by Afshine Amidi and Shervine Amidi
