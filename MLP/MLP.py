@@ -26,7 +26,7 @@ model = Sequential()
 
 model.add(Flatten(input_shape=input_shape))  # Input Layer
 
-# Hidden Layer
+# Hidden Layers
 model.add(Dense(128, activation='relu'))
 model.add(Dense(64, activation='relu'))
 
