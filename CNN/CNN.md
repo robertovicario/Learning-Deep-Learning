@@ -25,7 +25,7 @@ The convolution operation for a given input $I$ and a filter $K$ is defined as:
 
 $$(I * K)(i,j) = \sum_{m}\sum_{n} I(i-m,j-n)K(m,n)$$
 
-Where $ (i, j) $ are the coordinates of the output matrix.
+Where $(i, j)$ are the coordinates of the output matrix.
 
 The key concepts in convolutional layers include:
 
@@ -54,11 +54,11 @@ The pooling layer reduces the spatial dimensions of the activation maps, which h
 
 - **Average Pooling:** Computes the average value of each patch of the feature map.
 
-For max pooling with a pool size of $ p \times p $:
+For max pooling with a pool size of $p \times p$:
 
 $$P(i,j) = \max \{ I(m,n) : (m,n) \in \text{window}(i,j) \}$$
 
-Where $\text{window}(i,j)$ defines the $ p \times p $ region over which the maximum is taken.
+Where $\text{window}(i,j)$ defines the $p \times p$ region over which the maximum is taken.
 
 <table>
     <tr>
@@ -79,7 +79,7 @@ The output of a fully connected layer is calculated as:
 
 $$y = Wx + b$$
 
-Where $ y $ is the output vector, $ W $ is the weight matrix, $ x $ is the input vector, and $ b $ is the bias vector.
+Where $y$ is the output vector, $W$ is the weight matrix, $x$ is the input vector, and $b$ is the bias vector.
 
 <table>
     <tr>
