@@ -2,11 +2,11 @@
 
 ## Overview
 
-... capabilities, limitations
+Convolutional Neural Networks (CNNs) are a class of deep neural networks specifically designed for analyzing visual data. They have proven highly effective in tasks such as image classification, object detection, and segmentation. CNNs mimic the way humans perceive visual information, utilizing a hierarchical structure that captures spatial hierarchies in images. The core idea is to apply convolutional operations, which involve sliding filters over the input data to detect local patterns. CNNs have limitations, including the need for large amounts of labeled data and significant computational resources for training.
 
 ## Architecture
 
-... layers, neuron roles
+CNNs consist of a series of convolutional layers for feature extraction, pooling layers for dimensionality reduction, and fully connected layers for classification.
 
 <table>
     <tr>
@@ -19,21 +19,23 @@
 
 ### Convolutional Layer
 
-The convolutional layer is the core building block of a CNN. It applies a convolution operation to the input, passing the result to the next layer. The key concepts in convolutional layers include:
+The convolutional layer is the core building block of a CNN. It applies a convolution operation to the input, passing the result to the next layer.
 
-**Receptive Fields:** The receptive field is the region of the input image that affects a particular output value. For a given layer, the receptive field $R$ is determined by the size of the filter and the cumulative stride and padding of all preceding layers.
+Mathematically:
 
-**Stride:** The stride is the step size with which the convolution filter moves across the input image. A larger stride reduces the spatial dimensions of the output. If the stride is $s$, the position of the filter is moved by $s$ units each time. The output dimension $O$ for an input dimension $I$, filter size $F$, and stride $s$ is given by:
+$$(f * g)(i, j) = \sum_{m} \sum_{n} f(m, n) \cdot g(i - m, j - n)$$
 
-$$\boxed{O = \left\lfloor \frac{I - F}{s} \right\rfloor + 1}$$
+where $f$ is the input image, $g$ is the filter (or kernel), and $(i, j)$ are the coordinates of the output pixel.
 
-**Padding:** Padding involves adding extra pixels around the input image to control the spatial size of the output. Common padding strategies include "valid" (no padding) and "same" (padding to keep the output size equal to the input size). For an input dimension $I$, filter size $F$, stride $s$, and padding $P$, the output dimension $O$ is given by:
+The key concepts in convolutional layers include:
 
-$$\boxed{O = \left\lfloor \frac{I + 2P - F}{s} \right\rfloor + 1}$$
+- **Receptive Field:** The receptive field is the region of the input image that affects a particular output value. It's determined by the size of the filter.
 
-**Activation Maps:** After applying the convolution operation, the resulting output is called an activation map (or feature map), which highlights the presence of features in the input. If $f$ is the filter applied to an input $I$, the activation map $A$ at position $(i, j)$ is given by:
+- **Stride:** The stride is the step size with which the convolution filter moves across the input image.
 
-$$\boxed{A(i, j) = (I * f)(i, j) = \sum_{m} \sum_{n} I(i+m, j+n) f(m, n)}$$
+- **Padding:** Padding involves adding extra pixels around the input image to control the spatial size of the output.
+
+- **Activation Map:** After applying the convolution operation, the resulting output is called an activation map.
 
 <table>
     <tr>
@@ -46,15 +48,18 @@ $$\boxed{A(i, j) = (I * f)(i, j) = \sum_{m} \sum_{n} I(i+m, j+n) f(m, n)}$$
 
 ### Pooling Layer
 
-The pooling layer reduces the spatial dimensions of the activation maps, which helps decrease the computational load and the number of parameters. Pooling operations include:
+The pooling layer reduces the spatial dimensions of the activation maps, which helps decrease the computational load and the number of parameters.
 
-**Max Pooling:** Selects the maximum value from each patch of the feature map. For a pooling window of size $p \times p$ at position $(i, j)$, the output $P_{max}(i, j)$ is:
+Mathematically:
 
-$$\boxed{P_{max}(i, j) = \max \{ A(i + m, j + n) \mid 0 \leq m, n < p \}}$$
+$$ y(i, j) = \phi x(s \cdot i + m, s \cdot j + n) $$
 
-**Average Pooling:** Computes the average value of each patch of the feature map. For a pooling window of size $p \times p$ at position $(i, j)$, the output $P_{avg}(i, j)$ is:
+where $y(i, j)$ is the output, $\phi$ is the pooling function, $x$ is the input, $k$ is the size of the pooling window, and $s$ is the stride.
 
-$$\boxed{P_{avg}(i, j) = \frac{1}{p^2} \sum_{m=0}^{p-1} \sum_{n=0}^{p-1} A(i + m, j + n)}$$
+Pooling functions include:
+
+- **Max Pooling:** Selects the maximum value from each patch of the feature map.
+- **Average Pooling:** Computes the average value of each patch of the feature map.
 
 <table>
     <tr>
@@ -69,9 +74,13 @@ $$\boxed{P_{avg}(i, j) = \frac{1}{p^2} \sum_{m=0}^{p-1} \sum_{n=0}^{p-1} A(i + m
 
 ### Fully Connected Layer
 
-The fully connected layer connects every neuron in one layer to every neuron in the next layer. This layer is typically used at the end of the network to combine features learned by convolutional and pooling layers and to produce the final output. If $\mathbf{x}$ is the input vector to a fully connected layer, $\mathbf{W}$ is the weight matrix, and $\mathbf{b}$ is the bias vector, the output $\mathbf{y}$ is given by:
+The fully connected layer connects every neuron in one layer to every neuron in the next layer. This layer is typically used at the end of the network to combine features learned by convolutional and pooling layers and to produce the final output.
 
-$$\boxed{\mathbf{y} = \mathbf{W} \mathbf{x} + \mathbf{b}}$$
+Mathematically:
+
+$$y = f(Wx + b)$$
+
+Where $y$ is the output vector, $x$ is the input vector, $W$ is the weight matrix, $b$ is the bias vector, and $f$ is the activation function.
 
 <table>
     <tr>
@@ -89,14 +98,19 @@ $$\boxed{\mathbf{y} = \mathbf{W} \mathbf{x} + \mathbf{b}}$$
 ```py
 model = Sequential()
 
-model.add(Flatten(input_shape=input_shape))  # Input Layer
+# Convolutional Layers
+model.add(Conv2D(32, (3, 3), activation='relu', input_shape=input_shape))
+model.add(MaxPooling2D((2, 2)))
+model.add(Conv2D(64, (3, 3), activation='relu'))
+model.add(MaxPooling2D((2, 2)))
+model.add(Conv2D(64, (3, 3), activation='relu'))
 
-# Hidden Layers
-model.add(Dense(128, activation='relu'))
+# Output Layers
+model.add(Flatten())
 model.add(Dense(64, activation='relu'))
+model.add(Dense(num_classes, activation='softmax'))
 
-model.add(Dense(num_classes, activation='softmax'))  # Output Layer
-
+model.summary()
 model.compile(optimizer='adam',
               loss='categorical_crossentropy',
               metrics=['accuracy'])
