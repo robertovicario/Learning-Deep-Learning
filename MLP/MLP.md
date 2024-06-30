@@ -6,8 +6,6 @@ A Multi-Layer Perceptron (MLP) is a type of artificial neural network consisting
 
 ## Architecture
 
-## Architecture
-
 The architecture of a Multi-Layer Perceptron (MLP) consists of an input layer, hidden layers, and an output layer. Each neuron in one layer connects to every neuron in the next through weighted connections.
 
 <table>
