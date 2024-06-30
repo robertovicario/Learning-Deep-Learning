@@ -72,15 +72,13 @@ $$a_k = z_k$$
 ```py
 model = Sequential()
 
-# Input Layer
-model.add(Flatten(input_shape=input_shape))
+model.add(Flatten(input_shape=input_shape))  # Input Layer
 
 # Hidden Layers
 model.add(Dense(128, activation='relu'))
 model.add(Dense(64, activation='relu'))
 
-# Output Layer
-model.add(Dense(num_classes, activation='softmax'))
+model.add(Dense(num_classes, activation='softmax'))  # Output Layer
 
 model.compile(optimizer='adam',
               loss='categorical_crossentropy',
