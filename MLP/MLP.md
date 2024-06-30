@@ -25,8 +25,6 @@ The input layer is the first layer in the MLP and is responsible for receiving t
 
 The hidden layers lie between the input and output layers and are the core of the MLP's learning capabilities. These layers perform most of the computations and learning through the neurons, each of which applies a nonlinear activation function to transform the input data. The commonly used activation functions include ReLU (Rectified Linear Unit), sigmoid, and tanh.
 
-- **Dropout Layer:** A dropout layer is often added to the hidden layers to prevent overfitting. During training, it randomly sets a fraction of input units to zero at each update, which helps to prevent the network from becoming too reliant on specific neurons and improves generalization.
-
 ### Output Layer
 
 The output layer is the final layer in the MLP and is responsible for producing the final output of the network. The number of nodes in this layer corresponds to the number of classes in a classification problem or the number of output values in a regression problem. The output layer typically uses an activation function such as softmax for classification tasks or a linear activation function for regression tasks.
