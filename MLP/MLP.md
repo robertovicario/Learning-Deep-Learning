@@ -6,6 +6,15 @@ A Multi-Layer Perceptron (MLP) is a class of feedforward artificial neural netwo
 
 ## Architecture
 
+<table>
+    <tr>
+        <td><img src="/MLP/img/1.png" width="512"></td>
+    </tr>
+    <tr>
+        <td align="center">Architecture</td>
+    </tr>
+</table>
+
 ### Input Layer
 
 The input layer is the first layer in the MLP and is responsible for receiving the input data. The number of nodes in this layer corresponds to the number of features in the input dataset. Each node in the input layer passes the input data to the next layer without any transformation.
@@ -19,18 +28,6 @@ The hidden layers lie between the input and output layers and are the core of th
 ### Output Layer
 
 The output layer is the final layer in the MLP and is responsible for producing the final output of the network. The number of nodes in this layer corresponds to the number of classes in a classification problem or the number of output values in a regression problem. The output layer typically uses an activation function such as softmax for classification tasks or a linear activation function for regression tasks.
-
----
-
-<br>
-<table>
-    <tr>
-        <td><img src="/MLP/img/1.png" width="512"></td>
-    </tr>
-    <tr>
-        <td align="center">Architecture</td>
-    </tr>
-</table>
 
 ## TensorFlow Implementation
 
@@ -110,3 +107,26 @@ plt.legend(loc='lower right')
 
 plt.show()
 ```
+
+## Model Evaluation
+
+<table>
+    <tr>
+        <td><img src="/MLP/img/1.png" width="512"></td>
+    </tr>
+    <tr>
+        <td align="center">Model Evaluation</td>
+    </tr>
+</table>
+
+### Model Loss
+
+- **Train Loss:** The training loss decreases steadily from above 0.5 to below 0.05, indicating that the model is learning well during the training phase.
+
+- **Validation Loss:** The validation loss also decreases, although it starts lower than the training loss and plateaus around the same value as the training loss after about 5 epochs. This suggests that the model is generalizing well to the validation data without significant overfitting.
+
+### Model Accuracy
+
+- **Train Accuracy:** The training accuracy increases sharply at the beginning and then more gradually, reaching around 96% by the end of the training period.
+
+- **Validation Accuracy:** The validation accuracy also improves rapidly at the beginning and reaches about 98%, slightly higher than the training accuracy, indicating good generalization.
