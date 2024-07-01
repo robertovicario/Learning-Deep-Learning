@@ -23,7 +23,7 @@ The input layer is the first layer in the MLP and is responsible for receiving t
 
 Mathematically, given an input vector:
 
-$$\mathbf{x} = [x_1, x_2, \ldots, x_n]$$
+$$x = [x_1, x_2, \ldots, x_n]$$
 
 where $x_i$ represents the $i$-th feature of the input data, the input layer forwards this vector to the next layer without any modification.
 
