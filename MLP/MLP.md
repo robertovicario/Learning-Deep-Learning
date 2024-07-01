@@ -53,6 +53,85 @@ The final output $a_j^{(L)}$ of the $j$-th neuron in the output layer is given b
 
 $$a_j^{(L)} = z_j^{(L)}$$
 
+### Activation Functions
+
+Activation functions introduce non-linearity into the model, allowing it to learn complex patterns.
+
+### Sigmoid
+
+The Sigmoid function is an S-shaped curve that maps any real-valued number into the range (0, 1). It's often used in the output layer of binary classification problems.
+
+Mathematically, the Sigmoid function is defined as:
+
+$$\sigma(x) = \frac{1}{1 + e^{-x}}$$
+
+<table>
+    <tr>
+        <td><img src="/MLP/img/2.png" width="64"></td>
+    </tr>
+    <tr>
+        <td align="center">Sigmoid</td>
+    </tr>
+</table>
+
+### Tanh
+
+The Tanh function is similar to the Sigmoid function but maps values to the range (-1, 1). It is zero-centered, which makes it a better choice than the Sigmoid function in some cases.
+
+Mathematically, the Tanh function is expressed as:
+
+$$\sigma(x) = \frac{e^x - e^{-x}}{e^x + e^{-x}}$$
+
+<table>
+    <tr>
+        <td><img src="/MLP/img/3.png" width="64"></td>
+    </tr>
+    <tr>
+        <td align="center">Tanh</td>
+    </tr>
+</table>
+
+### ReLU
+
+The Rectified Linear Unit (ReLU) is a widely used activation function in deep learning. It helps in solving the vanishing gradient problem, making the training of deep networks more efficient. ReLU outputs the input directly if it is positive; otherwise, it will output zero.
+
+Mathematically, the ReLU function is given by:
+
+$$\sigma(x) = \max(0, x)$$
+
+<table>
+    <tr>
+        <td><img src="/MLP/img/4.png" width="64"></td>
+    </tr>
+    <tr>
+        <td align="center">ReLU</td>
+    </tr>
+</table>
+
+### Leaky ReLU
+
+Leaky ReLU is a variation of the ReLU function. Instead of outputting zero for negative input values, it will allow a small, non-zero, constant gradient (usually 0.01).
+
+Mathematically, the Leaky ReLU function is defined as:
+
+$$
+\text{Leaky ReLU}(x) = \begin{cases} 
+    x & x \ge 0 \\
+    \alpha x & x < 0 
+\end{cases}
+$$
+
+where $\alpha$ is a small constant (typically 0.01).
+
+<table>
+    <tr>
+        <td><img src="/MLP/img/5.png" width="64"></td>
+    </tr>
+    <tr>
+        <td align="center">Leaky ReLU</td>
+    </tr>
+</table>
+
 ## TensorFlow Implementation
 
 ### Model Definition
