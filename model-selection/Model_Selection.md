@@ -70,7 +70,7 @@ Dropout is a regularization technique where randomly selected neurons are ignore
 ```py
 # Hidden Layers
 model.add(Dense(128, activation='relu'))
-model.add(Dropout(0.5))  # Dropout Layer
+model.add(Dropout(0.5))  # Dropout
 model.add(Dense(64, activation='relu'))
 ```
 
