@@ -2,11 +2,11 @@
 
 ## Overview
 
-A Multi-Layer Perceptron (MLP) is a type of artificial neural network consisting of an input layer, one or more hidden layers, and an output layer. Each node in one layer connects to every node in the next with a specific weight. MLPs use backpropagation for training and excel in tasks like classification, regression, and pattern recognition, making them valuable in image and speech recognition, and financial forecasting. However, they require large amounts of labeled data and significant computational resources, and can overfit with small or noisy datasets.
+A Multi-Layer Perceptron (MLP) is a class of feedforward artificial neural networks (ANN). MLPs can approximate complex functions and relationships within data and are useful in image and speech recognition. MLPs requires significant computational power, especially for large networks, and without proper regularization can overfit to training data.
 
 ## Architecture
 
-The architecture of a Multi-Layer Perceptron (MLP) consists of an input layer, hidden layers, and an output layer. Each neuron in one layer connects to every neuron in the next through weighted connections.
+The architecture of an MLP is characterized by its layered structure, where each layer contains multiple neurons. The fundamental layers of an MLP include the input layer, one or more hidden layers, and the output layer.
 
 <table>
     <tr>
@@ -19,39 +19,46 @@ The architecture of a Multi-Layer Perceptron (MLP) consists of an input layer, h
 
 ### Input Layer
 
-The input layer is the first layer in the MLP and is responsible for receiving the input data. The number of nodes in this layer corresponds to the number of features in the input dataset. Each node in the input layer passes the input data to the next layer without any transformation.
+The input layer is the first layer in the MLP and is responsible for receiving the input features. Each neuron in this layer represents a single input feature from the dataset. This layer does not perform any computations but simply forwards the input data to the next layer.
 
-### Hidden Layer
+Mathematically, given an input vector:
 
-The hidden layers lie between the input and output layers and are the core of the MLP's learning capabilities. These layers perform most of the computations and learning through the neurons, each of which applies a nonlinear activation function to transform the input data.
+$$\mathbf{x} = [x_1, x_2, \ldots, x_n]$$
 
-Each neuron in the hidden layer computes a weighted sum of its inputs, adds a bias, and applies an activation function:
+where $x_i$ represents the $i$-th feature of the input data, the input layer forwards this vector to the next layer without any modification.
 
-$$z_j = \sum_{i=1}^{n} w_{ij}x_i + b_j$$
+### Hidden Layers
 
-Where:
+The hidden layers are where most of the computation happens in an MLP. Each neuron in a hidden layer takes a weighted sum of the inputs from the previous layer, adds a bias term, and applies an activation function to introduce non-linearity into the model. The purpose of these layers is to extract features and patterns from the input data.
 
-- $z_j$ is the input to the activation function of the $j$-th neuron.
+Mathematically, for the $k$-th hidden layer, the computation for the $j$-th neuron is given by:
 
-- $x_i$ is the $i$-th input.
+$$z_j^{(k)} = \sum_{i=1}^{n} w_{ji}^{(k)} a_i^{(k-1)} + b_j^{(k)}$$
 
-- $w_{ij}$ is the weight between the $i$-th input and the $j$-th neuron.
+where $z_j^{(k)}$ is the weighted sum of inputs for the $j$-th neuron in the $k$-th layer, $w_{ji}^{(k)}$ is the weight connecting the $i$-th neuron of the $(k-1)$-th layer to the $j$-th neuron of the $k$-th layer, $a_i^{(k-1)}$ is the activation of the $i$-th neuron in the $(k-1)$-th layer (with $a_i^{(0)} = x_i$ for the input layer), and $b_j^{(k)}$ is the bias term for the $j$-th neuron in the $k$-th layer. The activation $a_j^{(k)}$ of the $j$-th neuron in the $k$-th layer is obtained by applying an activation function $f$ to $z_j^{(k)}$:
 
-- $b_j$ is the bias of the $j$-th neuron.
-
-The activation function $\phi$ is then applied to $z_j$:
-
-$$a_j = \phi(z_j)$$
+$$a_j^{(k)} = z_j^{(k)}$$
 
 ### Output Layer
 
-The output layer is the final layer in the MLP and is responsible for producing the final output of the network. The number of nodes in this layer corresponds to the number of classes in a classification problem or the number of output values in a regression problem.
+The output layer is the final layer of the MLP, and it provides the network's predictions.
+
+Mathematically, for the output layer, the computation for the $j$-th output neuron is given by:
+
+$$z_j^{(L)} = \sum_{i=1}^{n} w_{ji}^{(L)} a_i^{(L-1)} + b_j^{(L)}$$
+
+where $z_j^{(L)}$ is the weighted sum of inputs for the $j$-th neuron in the output layer, $w_{ji}^{(L)}$ is the weight connecting the $i$-th neuron of the last hidden layer to the $j$-th neuron of the output layer, $a_i^{(L-1)}$ is the activation of the $i$-th neuron in the last hidden layer, and $b_j^{(L)}$ is the bias term for the $j$-th neuron in the output layer.
+
+The final output $a_j^{(L)}$ of the $j$-th neuron in the output layer is given by:
+
+$$a_j^{(L)} = z_j^{(L)}$$
 
 ## TensorFlow Implementation
 
 ### Model Definition
 
 ```py
+# Model Definition
 model = Sequential()
 
 model.add(Flatten(input_shape=input_shape))  # Input Layer
@@ -62,6 +69,7 @@ model.add(Dense(64, activation='relu'))
 
 model.add(Dense(num_classes, activation='softmax'))  # Output Layer
 
+model.summary()
 model.compile(optimizer='adam',
               loss='categorical_crossentropy',
               metrics=['accuracy'])
@@ -70,6 +78,10 @@ model.compile(optimizer='adam',
 ### Training and Evaluation
 
 ```py
+# Training and Evaluation
+epochs = 20
+batch_size = 128
+
 history = model.fit(X_train, y_train,
                     epochs=epochs,
                     batch_size=batch_size,
@@ -78,30 +90,6 @@ history = model.fit(X_train, y_train,
 loss, accuracy = model.evaluate(X_test, y_test)
 print(f'Test Loss: {loss}')
 print(f'Test Accuracy: {accuracy}')
-```
-
-### Plot History
-
-```py
-plt.figure(figsize=(12, 6))
-
-plt.subplot(1, 2, 1)
-plt.plot(history.history['loss'], label='Train Loss')
-plt.plot(history.history['val_loss'], label='Validation Loss')
-plt.title('Model Loss')
-plt.xlabel('Epoch')
-plt.ylabel('Loss')
-plt.legend(loc='upper right')
-
-plt.subplot(1, 2, 2)
-plt.plot(history.history['accuracy'], label='Train Accuracy')
-plt.plot(history.history['val_accuracy'], label='Validation Accuracy')
-plt.title('Model Accuracy')
-plt.xlabel('Epoch')
-plt.ylabel('Accuracy')
-plt.legend(loc='lower right')
-
-plt.show()
 ```
 
 ## Reference

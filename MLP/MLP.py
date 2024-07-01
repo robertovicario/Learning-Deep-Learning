@@ -1,25 +1,18 @@
-import tensorflow as tf
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense, Dropout, Flatten
-from tensorflow.keras.optimizers import Adam
+from keras.datasets import mnist
+from keras.layers import Dense, Flatten
+from keras.models import Sequential
+from keras.utils import to_categorical
 import matplotlib.pyplot as plt
-from tensorflow.keras.datasets import mnist
-from tensorflow.keras.utils import to_categorical
 
-# MNIST Preprocessing
+# Preprocessing
 (X_train, y_train), (X_test, y_test) = mnist.load_data()
-
-X_train = X_train.astype('float32') / 255
-X_test = X_test.astype('float32') / 255
-
-X_train = X_train.reshape((X_train.shape[0], -1))
-X_test = X_test.reshape((X_test.shape[0], -1))
+X_train, X_test = X_train / 255.0, X_test / 255.0
 
 y_train = to_categorical(y_train)
 y_test = to_categorical(y_test)
 
-input_shape = (X_train.shape[1],)
-num_classes = y_train.shape[1]
+num_classes = 10
+input_shape = X_train.shape[1:]
 
 # Model Definition
 model = Sequential()
@@ -32,6 +25,7 @@ model.add(Dense(64, activation='relu'))
 
 model.add(Dense(num_classes, activation='softmax'))  # Output Layer
 
+model.summary()
 model.compile(optimizer='adam',
               loss='categorical_crossentropy',
               metrics=['accuracy'])
