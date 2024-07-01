@@ -53,7 +53,7 @@ The final output $a_j^{(L)}$ of the $j$-th neuron in the output layer is given b
 
 $$a_j^{(L)} = z_j^{(L)}$$
 
-### Activation Functions
+## Activation Functions
 
 Activation functions introduce non-linearity into the model, allowing it to learn complex patterns.
 
