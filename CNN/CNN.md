@@ -23,9 +23,9 @@ The convolutional layer is the core building block of a CNN. It applies a convol
 
 Mathematically, the convolution operation for a 2D input image $I$ and a filter (or kernel) $K$ is defined as:
 
-$$S(i, j) = (I * K)(i, j) = \sum_m \sum_n I(i+m, j+n) \cdot K(m, n)$$
+$$C(i, j) = \sum_h \sum_w I(i + h, j + w) \cdot K(h, w)$$
 
-where $S(i, j)$ is the output of the convolution at position $(i, j)$, and $m$ and $n$ are the height and width of the filter.
+where $C(i, j)$ is the output of the convolution at position $(i, j)$, and $w$ and $h$ are the width and height of the kernel.
 
 The key concepts in convolutional layers include:
 
