@@ -86,10 +86,6 @@ where $y$ is the output vector, $W$ is the weight matrix, $x$ is the input vecto
     </tr>
 </table>
 
-## Activation Functions
-
-...
-
 ## TensorFlow Implementation
 
 ### Model Definition
