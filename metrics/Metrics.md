@@ -32,31 +32,31 @@ A confusion matrix is a table used to evaluate the performance of a classificati
 
 ### Accuracy
 
-Measures the proportion of correctly predicted instances out of the total instances:
+Mathematically, measures the proportion of correctly predicted instances out of the total instances:
 
 $$\text{Accuracy} = \frac{TP + TN}{TP + TN + FP + FN}$$
 
 ### Precision
 
-Indicates the proportion of positive identifications that were actually correct:
+Mathematically, indicates the proportion of positive identifications that were actually correct:
 
 $$\text{Precision} = \frac{TP}{TP + FP}$$
 
 ### Recall (Sensitivity)
 
-Measures the proportion of actual positives that were correctly identified:
+Mathematically, measures the proportion of actual positives that were correctly identified:
 
 $$\text{Recall} = \frac{TP}{TP + FN}$$
 
 ### Specificity
 
-Indicates the proportion of actual negatives that were correctly identified:
+Mathematically, indicates the proportion of actual negatives that were correctly identified:
 
 $$\text{Specificity} = \frac{TN}{TN + FP}$$
 
 ### F1 Score
 
-The harmonic mean of precision and recall, providing a single metric that balances both:
+Mathematically, the harmonic mean of precision and recall, providing a single metric that balances both:
 
 $$\text{F1 Score} = 2 \times \frac{\text{Precision} \times \text{Recall}}{\text{Precision} + \text{Recall}}$$
 
@@ -83,37 +83,37 @@ Regression metrics are used to evaluate the performance of regression algorithms
 
 ### Total Sum of Squares (SST)
 
-The Total Sum of Squares (SST) measures the total variance in the response variable $y$. It represents the total variability of the observed data points from their mean:
+The Total Sum of Squares (SST) measures the total variance in the response variable $y$.
+
+Mathematically, it represents the total variability of the observed data points from their mean:
 
 $$SS_{tot} = \sum_{i=1}^{m} (y_i - \bar{y})^2$$
 
-Where:
-
-- $y_i$ is the observed value.
-
-- $\bar{y}$ is the mean of the observed values.
-
-- $m$ is the number of observations.
+where $y_i$ is the observed value, $\bar{y}$ is the mean of the observed values, and $m$ is the number of observations.
 
 ### Explained Sum of Squares (SSR)
 
-The Explained Sum of Squares (SSR) measures the amount of variance explained by the regression model. It represents the reduction in variability of $y$ due to the model:
+The Explained Sum of Squares (SSR) measures the amount of variance explained by the regression model.
+
+Mathematically, it represents the reduction in variability of $y$ due to the model:
 
 $$SS_{reg} = \sum_{i=1}^{m} (f(x_i) - \bar{y})^2$$
 
-Where:
-
-- $f(x_i)$ is the predicted value.
+where $f(x_i)$ is the predicted value.
 
 ### Residual Sum of Squares (SSE)
 
-The Residual Sum of Squares (SSE) measures the variance that is not explained by the regression model. It represents the discrepancy between the observed data and the predicted values:
+The Residual Sum of Squares (SSE) measures the variance that is not explained by the regression model.
+
+Mathematically, it represents the discrepancy between the observed data and the predicted values:
 
 $$SS_{res} = \sum_{i=1}^{m} (y_i - f(x_i))^2$$
 
 ### Coefficient of Determination
 
-The Coefficient of Determination, denoted as $R^2$, is a statistical measure that indicates the proportion of the variance in the dependent variable that is predictable from the independent variables. It provides an indication of goodness of fit and is a value between 0 and 1:
+The Coefficient of Determination, denoted as $R^2$, is a statistical measure that indicates the proportion of the variance in the dependent variable that is predictable from the independent variables.
+
+Mathematically, it provides an indication of goodness of fit and is a value between 0 and 1:
 
 $$R^2 = 1 - \frac{SS_{res}}{SS_{tot}}$$
 
