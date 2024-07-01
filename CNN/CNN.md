@@ -23,7 +23,7 @@ The convolutional layer is the core building block of a CNN. It applies a convol
 
 Mathematically, the convolution operation for a 2D input image $I$ and a filter (or kernel) $K$ is defined as:
 
-$$C(i, j) = \sum_h \sum_w I(i + h, j + w) \cdot K(h, w)$$
+$$C(i, j) = \sum_h^{n} \sum_w^{n} I(i + h, j + w) \cdot K(h, w)$$
 
 where $C(i, j)$ is the output of the convolution at position $(i, j)$, and $w$ and $h$ are the width and height of the kernel.
 
@@ -91,6 +91,7 @@ where $y$ is the output vector, $W$ is the weight matrix, $x$ is the input vecto
 ### Model Definition
 
 ```py
+# Model Definition
 model = Sequential()
 
 # Convolutional Layers
@@ -114,6 +115,10 @@ model.compile(optimizer='adam',
 ### Training and Evaluation
 
 ```py
+# Training and Evaluation
+epochs = 10
+batch_size = 64
+
 history = model.fit(X_train, y_train,
                     epochs=epochs,
                     batch_size=batch_size,
@@ -122,30 +127,6 @@ history = model.fit(X_train, y_train,
 loss, accuracy = model.evaluate(X_test, y_test)
 print(f'Test Loss: {loss}')
 print(f'Test Accuracy: {accuracy}')
-```
-
-### Plot History
-
-```py
-plt.figure(figsize=(12, 6))
-
-plt.subplot(1, 2, 1)
-plt.plot(history.history['loss'], label='Train Loss')
-plt.plot(history.history['val_loss'], label='Validation Loss')
-plt.title('Model Loss')
-plt.xlabel('Epoch')
-plt.ylabel('Loss')
-plt.legend(loc='upper right')
-
-plt.subplot(1, 2, 2)
-plt.plot(history.history['accuracy'], label='Train Accuracy')
-plt.plot(history.history['val_accuracy'], label='Validation Accuracy')
-plt.title('Model Accuracy')
-plt.xlabel('Epoch')
-plt.ylabel('Accuracy')
-plt.legend(loc='lower right')
-
-plt.show()
 ```
 
 ## Reference

@@ -8,12 +8,13 @@ import matplotlib.pyplot as plt
 (X_train, y_train), (X_test, y_test) = cifar10.load_data()
 X_train, X_test = X_train / 255.0, X_test / 255.0
 
+y_train = to_categorical(y_train)
+y_test = to_categorical(y_test)
+
 num_classes = 10
 input_shape = X_train.shape[1:]
 
-y_train = to_categorical(y_train, num_classes)
-y_test = to_categorical(y_test, num_classes)
-
+# Model Definition
 model = Sequential()
 
 # Convolutional Layers
@@ -33,6 +34,7 @@ model.compile(optimizer='adam',
               loss='categorical_crossentropy',
               metrics=['accuracy'])
 
+# Training and Evaluation
 epochs = 10
 batch_size = 64
 
