@@ -44,3 +44,7 @@ The bias-variance tradeoff is a fundamental concept in machine learning that des
         <td align="center"><img src="/diagnostics/img/9.png" width="128"></td>
     </tr>
 </table>
+
+## Reference
+
+- [Stanford CS229 Machine Learning Cheatsheet](https://stanford.edu/~shervine/teaching/cs-229) by Afshine Amidi and Shervine Amidi
