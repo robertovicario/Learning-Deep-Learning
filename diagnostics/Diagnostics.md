@@ -10,7 +10,13 @@ Diagnostics play a crucial role in understanding and improving model performance
 
 ### Bias-Variance Tradeoff
 
-The bias-variance tradeoff is a fundamental concept in machine learning that describes the tradeoff between a model's ability to minimize bias and variance to achieve good generalization performance. Understanding this tradeoff is essential for diagnosing model performance issues.
+The bias-variance tradeoff is a fundamental concept in machine learning that describes the tradeoff between a model's ability to minimize bias and variance to achieve good generalization performance. Understanding this tradeoff is essential for diagnosing model performance issues:
+
+- **High bias, low variance:** Poor performance on both training and test data. Model is too simple to capture underlying patterns.
+
+- **Balanced bias and variance:** Good performance on both training and test data. Model complexity matches the complexity of the data.
+
+- **Low bias, high variance:** Good performance on training data but poor performance on test data. Model is too complex and captures noise.
 
 <table>
     <tr>
@@ -19,12 +25,6 @@ The bias-variance tradeoff is a fundamental concept in machine learning that des
         <td><strong>Just Right</strong></td>
         <td><strong>Overfitting</strong></td>
     </tr>
-    <tr>
-        <td align="center"><strong>Symptoms</strong></td>
-        <td>High bias, low variance. Poor performance on both training and test data. Model is too simple to capture underlying patterns.</td>
-        <td>Balanced bias and variance. Good performance on both training and test data. Model complexity matches the complexity of the data.</td>
-        <td>Low bias, high variance. Good performance on training data but poor performance on test data. Model is too complex and captures noise.</td>
-    <tr>
     <tr>
         <td align="center"><strong>Classification</strong></td>
         <td align="center"><img src="/diagnostics/img/1.png" width="128"></td>
