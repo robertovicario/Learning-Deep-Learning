@@ -89,7 +89,7 @@ Weight regularization involves adding a penalty to the loss function to constrai
     </tr>
 </table>
 
-#### TensorFlow Implementation:
+#### TensorFlow Implementation
 
 ```py
 # Hidden Layers
@@ -122,3 +122,5 @@ early_stopping = EarlyStopping(monitor='val_loss', patience=5, restore_best_weig
 ## Reference
 
 - [Stanford CS229 Machine Learning Cheatsheet](https://stanford.edu/~shervine/teaching/cs-229) by Afshine Amidi and Shervine Amidi
+
+- [Stanford CS230 Deep Learning Cheatsheet](https://stanford.edu/~shervine/teaching/cs-230) by Afshine Amidi and Shervine Amidi
