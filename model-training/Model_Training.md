@@ -70,7 +70,7 @@ $$\frac{\partial L}{\partial b} = \frac{\partial L}{\partial \hat{y}} \cdot \fra
 
 <table>
     <tr>
-        <td><img src="/model-traning/img/1.png" width="512"></td>
+        <td><img src="/model-training/img/1.png" width="512"></td>
     </tr>
     <tr>
         <td align="center">Backward Propagation</td>
@@ -95,7 +95,7 @@ where $\alpha$ is the learning rate.
 
 <table>
     <tr>
-        <td><img src="/model-traning/img/2.png" width="512"></td>
+        <td><img src="/model-training/img/2.png" width="512"></td>
     </tr>
     <tr>
         <td align="center">Weight Update</td>
@@ -183,8 +183,8 @@ Weight regularization involves adding a penalty to the loss function to constrai
 
 <table>
     <tr>
-        <td><img src="/model-traning/img/4.png" width="256"></td>
-        <td><img src="/model-traning/img/5.png" width="256"></td>
+        <td><img src="/model-training/img/4.png" width="256"></td>
+        <td><img src="/model-training/img/5.png" width="256"></td>
     </tr>
     <tr>
         <td align="center">L1 (Lasso)</td>
@@ -209,7 +209,7 @@ Early stopping is a technique to stop training the neural network once the perfo
 
 <table>
     <tr>
-        <td><img src="/model-traning/img/6.png" width="512"></td>
+        <td><img src="/model-training/img/6.png" width="512"></td>
     </tr>
     <tr>
         <td align="center">Early Stopping</td>
