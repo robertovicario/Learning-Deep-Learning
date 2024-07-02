@@ -10,7 +10,7 @@ The architecture of an MLP is characterized by its layered structure, where each
 
 <table>
     <tr>
-        <td><img src="/MLP/img/1.png" width="512"></td>
+        <td><img src="/MLP/img/1.png" width="256"></td>
     </tr>
     <tr>
         <td align="center">Architecture</td>
@@ -67,7 +67,7 @@ $$\sigma(x) = \frac{1}{1 + e^{-x}}$$
 
 <table>
     <tr>
-        <td><img src="/MLP/img/2.png" width="512"></td>
+        <td><img src="/MLP/img/2.png" width="256"></td>
     </tr>
     <tr>
         <td align="center">Sigmoid</td>
@@ -84,7 +84,7 @@ $$\sigma(x) = \frac{e^x - e^{-x}}{e^x + e^{-x}}$$
 
 <table>
     <tr>
-        <td><img src="/MLP/img/3.png" width="512"></td>
+        <td><img src="/MLP/img/3.png" width="256"></td>
     </tr>
     <tr>
         <td align="center">Tanh</td>
@@ -101,7 +101,7 @@ $$\sigma(x) = \max(0, x)$$
 
 <table>
     <tr>
-        <td><img src="/MLP/img/4.png" width="512"></td>
+        <td><img src="/MLP/img/4.png" width="256"></td>
     </tr>
     <tr>
         <td align="center">ReLU</td>
@@ -125,7 +125,7 @@ where $\alpha$ is a small constant (typically 0.01).
 
 <table>
     <tr>
-        <td><img src="/MLP/img/5.png" width="512"></td>
+        <td><img src="/MLP/img/5.png" width="256"></td>
     </tr>
     <tr>
         <td align="center">Leaky ReLU</td>
