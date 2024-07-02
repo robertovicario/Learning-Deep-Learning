@@ -161,7 +161,7 @@ Dropout is a regularization technique where randomly selected neurons are ignore
 
 <table>
     <tr>
-        <td><img src="/model-traning/img/3.png" width="512"></td>
+        <td><img src="/model-training/img/3.png" width="512"></td>
     </tr>
     <tr>
         <td align="center">Dropout</td>
