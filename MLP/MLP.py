@@ -1,62 +1,111 @@
-from keras.datasets import mnist
-from keras.layers import Dense, Flatten
-from keras.models import Sequential
-from keras.utils import to_categorical
+import torch
+import torch.nn as nn
+import torch.optim as optim
+from torch.utils.data import DataLoader
+from torchvision import datasets, transforms
 import matplotlib.pyplot as plt
+import numpy as np
 
 # Preprocessing
-(X_train, y_train), (X_test, y_test) = mnist.load_data()
-X_train, X_test = X_train / 255.0, X_test / 255.0
+transform = transforms.Compose([
+    transforms.ToTensor(),
+    transforms.Normalize((0.5,), (0.5,))
+])
 
-y_train = to_categorical(y_train)
-y_test = to_categorical(y_test)
+train_dataset = datasets.MNIST(root='mnist_data', train=True, download=True, transform=transform)
+test_dataset = datasets.MNIST(root='mnist_data', train=False, download=True, transform=transform)
 
-num_classes = 10
-input_shape = X_train.shape[1:]
+batch_size = 128
+train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
+test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False)
 
 # Model Definition
-model = Sequential()
+class MLP(nn.Module):
+    def __init__(self):
+        super(MLP, self).__init__()
+        self.flatten = nn.Flatten()
+        self.dense1 = nn.Linear(28*28, 128)
+        self.dense2 = nn.Linear(128, 64)
+        self.output = nn.Linear(64, 10)
+    
+    def forward(self, x):
+        x = self.flatten(x)
+        x = torch.relu(self.dense1(x))
+        x = torch.relu(self.dense2(x))
+        x = torch.softmax(self.output(x), dim=1)
+        return x
 
-model.add(Flatten(input_shape=input_shape))  # Input Layer
+model = MLP()
 
-# Hidden Layers
-model.add(Dense(128, activation='relu'))
-model.add(Dense(64, activation='relu'))
-
-model.add(Dense(num_classes, activation='softmax'))  # Output Layer
-
-model.summary()
-model.compile(optimizer='adam',
-              loss='categorical_crossentropy',
-              metrics=['accuracy'])
+criterion = nn.CrossEntropyLoss()
+optimizer = optim.Adam(model.parameters(), lr=0.001)
 
 # Training and Evaluation
 epochs = 20
-batch_size = 128
+train_loss_history = []
+train_acc_history = []
+val_loss_history = []
+val_acc_history = []
 
-history = model.fit(X_train, y_train,
-                    epochs=epochs,
-                    batch_size=batch_size,
-                    validation_split=0.2)
-
-loss, accuracy = model.evaluate(X_test, y_test)
-print(f'Test Loss: {loss}')
-print(f'Test Accuracy: {accuracy}')
+for epoch in range(epochs):
+    model.train()
+    train_loss = 0
+    train_correct = 0
+    total_train = 0
+    
+    for images, labels in train_loader:
+        optimizer.zero_grad()
+        outputs = model(images)
+        loss = criterion(outputs, labels)
+        loss.backward()
+        optimizer.step()
+        
+        train_loss += loss.item()
+        _, predicted = torch.max(outputs.data, 1)
+        total_train += labels.size(0)
+        train_correct += (predicted == labels).sum().item()
+    
+    train_loss /= len(train_loader)
+    train_accuracy = 100 * train_correct / total_train
+    train_loss_history.append(train_loss)
+    train_acc_history.append(train_accuracy)
+    
+    model.eval()
+    val_loss = 0
+    val_correct = 0
+    total_val = 0
+    
+    with torch.no_grad():
+        for images, labels in test_loader:
+            outputs = model(images)
+            loss = criterion(outputs, labels)
+            
+            val_loss += loss.item()
+            _, predicted = torch.max(outputs.data, 1)
+            total_val += labels.size(0)
+            val_correct += (predicted == labels).sum().item()
+    
+    val_loss /= len(test_loader)
+    val_accuracy = 100 * val_correct / total_val
+    val_loss_history.append(val_loss)
+    val_acc_history.append(val_accuracy)
+    
+    print(f'Epoch {epoch+1}/{epochs}, Train Loss: {train_loss:.4f}, Train Accuracy: {train_accuracy:.2f}%, Val Loss: {val_loss:.4f}, Val Accuracy: {val_accuracy:.2f}%')
 
 # Plot History
 plt.figure(figsize=(12, 6))
 
 plt.subplot(1, 2, 1)
-plt.plot(history.history['loss'], label='Train Loss')
-plt.plot(history.history['val_loss'], label='Validation Loss')
+plt.plot(train_loss_history, label='Train Loss')
+plt.plot(val_loss_history, label='Validation Loss')
 plt.title('Model Loss')
 plt.xlabel('Epoch')
 plt.ylabel('Loss')
 plt.legend(loc='upper right')
 
 plt.subplot(1, 2, 2)
-plt.plot(history.history['accuracy'], label='Train Accuracy')
-plt.plot(history.history['val_accuracy'], label='Validation Accuracy')
+plt.plot(train_acc_history, label='Train Accuracy')
+plt.plot(val_acc_history, label='Validation Accuracy')
 plt.title('Model Accuracy')
 plt.xlabel('Epoch')
 plt.ylabel('Accuracy')
