@@ -70,7 +70,7 @@ $$\frac{\partial L}{\partial b} = \frac{\partial L}{\partial \hat{y}} \cdot \fra
 
 <table>
     <tr>
-        <td><img src="/model-training/img/1.png" width="512"></td>
+        <td><img src="/model-training/img/1.png" width="256"></td>
     </tr>
     <tr>
         <td align="center">Backward Propagation</td>
@@ -95,7 +95,7 @@ where $\alpha$ is the learning rate.
 
 <table>
     <tr>
-        <td><img src="/model-training/img/2.png" width="512"></td>
+        <td><img src="/model-training/img/2.png" width="256"></td>
     </tr>
     <tr>
         <td align="center">Weight Update</td>
@@ -161,7 +161,7 @@ Dropout is a regularization technique where randomly selected neurons are ignore
 
 <table>
     <tr>
-        <td><img src="/model-training/img/3.png" width="512"></td>
+        <td><img src="/model-training/img/3.png" width="256"></td>
     </tr>
     <tr>
         <td align="center">Dropout</td>
@@ -209,7 +209,7 @@ Early stopping is a technique to stop training the neural network once the perfo
 
 <table>
     <tr>
-        <td><img src="/model-training/img/6.png" width="512"></td>
+        <td><img src="/model-training/img/6.png" width="256"></td>
     </tr>
     <tr>
         <td align="center">Early Stopping</td>
