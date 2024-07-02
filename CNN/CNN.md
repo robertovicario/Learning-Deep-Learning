@@ -10,7 +10,7 @@ CNNs consist of a series of convolutional layers for feature extraction, pooling
 
 <table>
     <tr>
-        <td><img src="/CNN/img/1.png" width="512"></td>
+        <td><img src="/CNN/img/1.png" width="256"></td>
     </tr>
     <tr>
         <td align="center">Architecture</td>
@@ -39,7 +39,7 @@ The key concepts in convolutional layers include:
 
 <table>
     <tr>
-        <td><img src="/CNN/img/2.png" width="512"></td>
+        <td><img src="/CNN/img/2.png" width="256"></td>
     </tr>
     <tr>
         <td align="center">Convolutional Layer</td>
@@ -73,7 +73,7 @@ The fully connected layer connects every neuron in one layer to every neuron in 
 
 <table>
     <tr>
-        <td><img src="/CNN/img/5.png" width="512"></td>
+        <td><img src="/CNN/img/5.png" width="256"></td>
     </tr>
     <tr>
         <td align="center">Fully Connected Layer</td>
