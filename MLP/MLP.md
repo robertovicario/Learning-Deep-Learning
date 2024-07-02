@@ -53,26 +53,110 @@ The final output $a_j^{(L)}$ of the $j$-th neuron in the output layer is given b
 
 $$a_j^{(L)} = z_j^{(L)}$$
 
-## TensorFlow Implementation
+## Activation Functions
+
+Activation functions introduce non-linearity into the model, allowing it to learn complex patterns.
+
+### Sigmoid
+
+The Sigmoid function is an S-shaped curve that maps any real-valued number into the range (0, 1). It's often used in the output layer of binary classification problems.
+
+Mathematically, the Sigmoid function is defined as:
+
+$$\sigma(x) = \frac{1}{1 + e^{-x}}$$
+
+<table>
+    <tr>
+        <td><img src="/MLP/img/2.png" width="512"></td>
+    </tr>
+    <tr>
+        <td align="center">Sigmoid</td>
+    </tr>
+</table>
+
+### Tanh
+
+The Tanh function is similar to the Sigmoid function but maps values to the range (-1, 1). It is zero-centered, which makes it a better choice than the Sigmoid function in some cases.
+
+Mathematically, the Tanh function is expressed as:
+
+$$\sigma(x) = \frac{e^x - e^{-x}}{e^x + e^{-x}}$$
+
+<table>
+    <tr>
+        <td><img src="/MLP/img/3.png" width="512"></td>
+    </tr>
+    <tr>
+        <td align="center">Tanh</td>
+    </tr>
+</table>
+
+### ReLU
+
+The Rectified Linear Unit (ReLU) is a widely used activation function in deep learning. It helps in solving the vanishing gradient problem, making the training of deep networks more efficient. ReLU outputs the input directly if it is positive; otherwise, it will output zero.
+
+Mathematically, the ReLU function is given by:
+
+$$\sigma(x) = \max(0, x)$$
+
+<table>
+    <tr>
+        <td><img src="/MLP/img/4.png" width="512"></td>
+    </tr>
+    <tr>
+        <td align="center">ReLU</td>
+    </tr>
+</table>
+
+### Leaky ReLU
+
+Leaky ReLU is a variation of the ReLU function. Instead of outputting zero for negative input values, it will allow a small, non-zero, constant gradient (usually 0.01).
+
+Mathematically, the Leaky ReLU function is defined as:
+
+$$
+\sigma(x) = \begin{cases} 
+    x & x \ge 0 \\
+    \alpha x & x < 0 
+\end{cases}
+$$
+
+where $\alpha$ is a small constant (typically 0.01).
+
+<table>
+    <tr>
+        <td><img src="/MLP/img/5.png" width="512"></td>
+    </tr>
+    <tr>
+        <td align="center">Leaky ReLU</td>
+    </tr>
+</table>
+
+## PyTorch Implementation
 
 ### Model Definition
 
 ```py
 # Model Definition
-model = Sequential()
+class MLP(nn.Module):
+    def __init__(self):
+        super(MLP, self).__init__()
+        self.flatten = nn.Flatten()
+        self.dense1 = nn.Linear(28*28, 128)
+        self.dense2 = nn.Linear(128, 64)
+        self.output = nn.Linear(64, 10)
+    
+    def forward(self, x):
+        x = self.flatten(x)
+        x = torch.relu(self.dense1(x))
+        x = torch.relu(self.dense2(x))
+        x = torch.softmax(self.output(x), dim=1)
+        return x
 
-model.add(Flatten(input_shape=input_shape))  # Input Layer
+model = MLP()
 
-# Hidden Layers
-model.add(Dense(128, activation='relu'))
-model.add(Dense(64, activation='relu'))
-
-model.add(Dense(num_classes, activation='softmax'))  # Output Layer
-
-model.summary()
-model.compile(optimizer='adam',
-              loss='categorical_crossentropy',
-              metrics=['accuracy'])
+criterion = nn.CrossEntropyLoss()
+optimizer = optim.Adam(model.parameters(), lr=0.001)
 ```
 
 ### Training and Evaluation
@@ -80,16 +164,55 @@ model.compile(optimizer='adam',
 ```py
 # Training and Evaluation
 epochs = 20
-batch_size = 128
+train_loss_history = []
+train_acc_history = []
+val_loss_history = []
+val_acc_history = []
 
-history = model.fit(X_train, y_train,
-                    epochs=epochs,
-                    batch_size=batch_size,
-                    validation_split=0.2)
-
-loss, accuracy = model.evaluate(X_test, y_test)
-print(f'Test Loss: {loss}')
-print(f'Test Accuracy: {accuracy}')
+for epoch in range(epochs):
+    model.train()
+    train_loss = 0
+    train_correct = 0
+    total_train = 0
+    
+    for images, labels in train_loader:
+        optimizer.zero_grad()
+        outputs = model(images)
+        loss = criterion(outputs, labels)
+        loss.backward()
+        optimizer.step()
+        
+        train_loss += loss.item()
+        _, predicted = torch.max(outputs.data, 1)
+        total_train += labels.size(0)
+        train_correct += (predicted == labels).sum().item()
+    
+    train_loss /= len(train_loader)
+    train_accuracy = 100 * train_correct / total_train
+    train_loss_history.append(train_loss)
+    train_acc_history.append(train_accuracy)
+    
+    model.eval()
+    val_loss = 0
+    val_correct = 0
+    total_val = 0
+    
+    with torch.no_grad():
+        for images, labels in test_loader:
+            outputs = model(images)
+            loss = criterion(outputs, labels)
+            
+            val_loss += loss.item()
+            _, predicted = torch.max(outputs.data, 1)
+            total_val += labels.size(0)
+            val_correct += (predicted == labels).sum().item()
+    
+    val_loss /= len(test_loader)
+    val_accuracy = 100 * val_correct / total_val
+    val_loss_history.append(val_loss)
+    val_acc_history.append(val_accuracy)
+    
+    print(f'Epoch {epoch+1}/{epochs}, Train Loss: {train_loss:.4f}, Train Accuracy: {train_accuracy:.2f}%, Val Loss: {val_loss:.4f}, Val Accuracy: {val_accuracy:.2f}%')
 ```
 
 ## Reference
