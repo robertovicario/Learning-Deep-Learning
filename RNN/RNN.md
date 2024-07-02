@@ -66,7 +66,9 @@ model.add(SimpleRNN(128, activation='relu', input_shape=input_shape))  # Input L
 model.add(Dense(64, activation='relu'))
 model.add(Dense(32, activation='relu'))
 
-model.add(Dense(num_classes, activation='softmax'))  # Output Layer
+# Output Layers
+model.add(Flatten())
+model.add(Dense(num_classes, activation='softmax'))
 
 model.summary()
 model.compile(optimizer='adam',

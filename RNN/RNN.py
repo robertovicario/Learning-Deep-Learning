@@ -1,6 +1,6 @@
 from keras.datasets import imdb
 from keras.models import Sequential
-from keras.layers import Dense, SimpleRNN
+from keras.layers import Dense, Flatten, SimpleRNN
 from keras.preprocessing.sequence import pad_sequences
 from keras.utils import to_categorical
 import matplotlib.pyplot as plt
@@ -29,7 +29,9 @@ model.add(SimpleRNN(128, activation='relu', input_shape=input_shape))  # Input L
 model.add(Dense(64, activation='relu'))
 model.add(Dense(32, activation='relu'))
 
-model.add(Dense(num_classes, activation='softmax'))  # Output Layer
+# Output Layers
+model.add(Flatten())
+model.add(Dense(num_classes, activation='softmax'))
 
 model.summary()
 model.compile(optimizer='adam',
