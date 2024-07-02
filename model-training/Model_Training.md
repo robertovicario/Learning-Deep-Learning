@@ -24,9 +24,9 @@ Mathematically, for a single layer:
 
 $$z = Wx + b$$
 
-$$y = \sigma(z)$$
+$$a = \sigma(z)$$
 
-where $W$ and $b$ are the weights and biases, $x$ is the input, $z$ is the linear transformation, $\sigma$ is the activation function, and $y$ is the output of the layer.
+where $W$ and $b$ are the weights and biases, $x$ is the input, $z$ is the linear transformation, $\sigma$ is the activation function, and $a$ is the output of the layer.
 
 ## Loss Function
 
