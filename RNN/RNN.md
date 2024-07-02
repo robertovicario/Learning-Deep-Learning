@@ -48,19 +48,19 @@ The dense layer, also known as a fully connected layer, is a traditional neural 
 
 ### Model Definition
 
-> [!NOTE]
->
-> **Input Shape:** For a sequential model processing any sequence data, the input shape typically consists of the number of timesteps (sequence length) and the number of features per timestep (input dimension).
-
 ```py
+# Model Definition
 model = Sequential()
 
-input_shape = (timesteps, input_dim)
-output_dim = num_classes
+model.add(Flatten(input_shape=input_shape))  # Input Layer
 
-model.add(SimpleRNN(units=50, activation='tanh', input_shape=input_shape))
-model.add(Dense(units=output_dim, activation='softmax'))
+# Hidden Layers
+model.add(Dense(128, activation='relu'))
+model.add(Dense(64, activation='relu'))
 
+model.add(Dense(num_classes, activation='softmax'))  # Output Layer
+
+model.summary()
 model.compile(optimizer='adam',
               loss='categorical_crossentropy',
               metrics=['accuracy'])
@@ -68,23 +68,15 @@ model.compile(optimizer='adam',
 
 ### Training and Evaluation
 
-> [!NOTE]
->
-> **Epochs:** One epoch means that each sample in the training dataset has had an opportunity to update the model's parameters once.
->
-> If model underfits increase epochs, else if model overfits decrease epochs.
-
-> [!NOTE]
->
-> **Batch Size:** The number of training samples used to compute a single gradient update.
->
-> Adjust batch size to balance training speed and model accuracy. Small batch sizes may lead to noisy training, while large batch sizes may cause overfitting.
-
 ```py
-epochs = 50
-batch_size = 32
+# Training and Evaluation
+epochs = ...
+batch_size = ...
 
-model.fit(X_train, y_train, epochs=epochs, batch_size=batch_size, validation_data=(X_val, y_val))
+history = model.fit(X_train, y_train,
+                    epochs=epochs,
+                    batch_size=batch_size,
+                    validation_split=0.2)
 
 loss, accuracy = model.evaluate(X_test, y_test)
 print(f'Test Loss: {loss}')
