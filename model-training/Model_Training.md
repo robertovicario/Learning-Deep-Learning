@@ -2,9 +2,13 @@
 
 ## Overview
 
-...
+Model training involves finding the optimal parameters that minimize the error of the model's predictions. This process typically includes initializing the model's parameters, propagating the input data through the model to make predictions, computing the loss between the predictions and actual values, and updating the parameters based on the computed gradients.
 
 ## Initialization
+
+...
+
+### Xavier Initialization
 
 ...
 
@@ -14,27 +18,48 @@ $$...$$
 
 ## Forward Propagation
 
-...
+Forward propagation involves passing the input data through the model's layers to obtain the output predictions. Each layer applies a transformation to the input data, such as a linear transformation followed by a non-linear activation function.
 
-Mathematically:
+Mathematically, for a single layer:
 
-$$...$$
+$$z = Wx + b$$
+
+$$y = \sigma(z)$$
+
+where $W$ and $b$ are the weights and biases, $x$ is the input, $z$ is the linear transformation, $\sigma$ is the activation function, and $y$ is the output of the layer.
 
 ## Loss Function
 
-... Cross-Entropy Loss, Mean Squared Error (MSE)
 
-Mathematically:
+The loss function measures the difference between the predicted values and the actual values.
 
-$$...$$
-
-## Backward Propagation
+### Cross-Entropy Loss
 
 ...
 
 Mathematically:
 
-$$...$$
+$$L = -\frac{1}{m} \sum_{i=1}^m \left[ y_i \log(\hat{y}_i) + (1 - y_i) \log(1 - \hat{y}_i) \right]$$
+
+### Mean Squared Error (MSE)
+
+...
+
+Mathematically:
+
+$$L = \frac{1}{m} \sum_{i=1}^m (y_i - \hat{y}_i)^2$$
+
+where $y_i$ is the actual value, $\hat{y}_i$ is the predicted value, and $m$ is the number of samples.
+
+## Backward Propagation
+
+Backward propagation involves computing the gradients of the loss function with respect to the model's parameters and using these gradients to update the parameters. This process is essential for minimizing the loss function.
+
+Mathematically, using the chain rule:
+
+$$\frac{\partial L}{\partial W} = \frac{\partial L}{\partial \hat{y}} \cdot \frac{\partial \hat{y}}{\partial z} \cdot \frac{\partial z}{\partial W}$$
+
+$$\frac{\partial L}{\partial b} = \frac{\partial L}{\partial \hat{y}} \cdot \frac{\partial \hat{y}}{\partial z} \cdot \frac{\partial z}{\partial b}$$
 
 <table>
     <tr>
@@ -47,7 +72,19 @@ $$...$$
 
 ### Weight Update
 
-...
+During weight update, the model's parameters are adjusted in the direction that reduces the loss. This adjustment is typically done using an optimization algorithm such as Gradient Descent.
+
+Mathematically:
+
+$$
+W = W - \alpha \frac{\partial L}{\partial W}
+$$
+
+$$
+b = b - \alpha \frac{\partial L}{\partial b}
+$$
+
+where $\alpha$ is the learning rate.
 
 <table>
     <tr>
@@ -60,45 +97,162 @@ $$...$$
 
 ## Gradient Descent Optimization
 
-...
+Gradient Descent is an optimization algorithm used to minimize the loss function by iteratively updating the model's parameters.
 
-Mathematically:
+Mathematically, the general update rule for Gradient Descent is:
 
-$$...$$
+$$\theta = \theta - \alpha \nabla_\theta J(\theta)$$
 
-### Mini-Batch Gradient Descent
+where $\theta$ represents the model's parameters, $\alpha$ is the learning rate, and $J(\theta)$ is the loss function.
 
-...
+### Mini-batch
 
-Mathematically:
+Mini-Batch splits the training data into small batches and performs an update for each batch. This approach balances the benefits of both SGD and Batch Gradient Descent.
 
-$$...$$
+Mathematically, the update rule for Mini-batch is:
+
+$$\theta = \theta - \alpha \nabla_\theta J(\theta; x^{(i:i+n)}, y^{(i:i+n)})$$
+
+where $x^{(i:i+n)}$ and $y^{(i:i+n)}$ are the input and output batches, respectively.
 
 ## Iteration and Convergence
 
 ...
 
+- **Epochs:** ...
+
+- **Batch Size:** ...
+
+- **Learning Rate:** ...
+
+- **Model Complexity:** ...
+
 ## Optimization
 
-...
+Optimization involves techniques that improve the efficiency and effectiveness of the training process.
 
 ### Momentum
 
-Mathematically:
-
-$$...$$
+Momentum helps accelerate the gradient descent algorithm by adding a fraction of the previous update to the current update.
 
 ### RMSprop
 
-Mathematically:
-
-$$...$$
+RMSprop adjusts the learning rate for each parameter based on the magnitude of recent gradients, helping to address issues with the oscillations in the parameter updates.
 
 ### Adam
 
+Adam combines the benefits of both Momentum and RMSprop, providing an adaptive learning rate for each parameter and accelerating convergence.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Backward Propagation
+
+Backward propagation involves computing the gradients of the loss function with respect to the model's parameters and using these gradients to update the parameters. This process is essential for minimizing the loss function.
+
+Mathematically, using the chain rule:
+
+$$
+\frac{\partial L}{\partial W} = \frac{\partial L}{\partial \hat{y}} \cdot \frac{\partial \hat{y}}{\partial z} \cdot \frac{\partial z}{\partial W}
+$$
+
+$$
+\frac{\partial L}{\partial b} = \frac{\partial L}{\partial \hat{y}} \cdot \frac{\partial \hat{y}}{\partial z} \cdot \frac{\partial z}{\partial b}
+$$
+
+<table>
+    <tr>
+        <td><img src="/model-traning/img/1.png" width="512"></td>
+    </tr>
+    <tr>
+        <td align="center">Backward Propagation</td>
+    </tr>
+</table>
+
+### Weight Update
+
+During weight update, the model's parameters are adjusted in the direction that reduces the loss. This adjustment is typically done using an optimization algorithm such as Gradient Descent.
+
 Mathematically:
 
-$$...$$
+$$
+W = W - \alpha \frac{\partial L}{\partial W}
+$$
+
+$$
+b = b - \alpha \frac{\partial L}{\partial b}
+$$
+
+where $\alpha$ is the learning rate.
+
+<table>
+    <tr>
+        <td><img src="/model-traning/img/2.png" width="512"></td>
+    </tr>
+    <tr>
+        <td align="center">Weight Update</td>
+    </tr>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## Regularization
 
