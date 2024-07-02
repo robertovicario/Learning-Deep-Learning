@@ -88,16 +88,16 @@ The fully connected layer connects every neuron in one layer to every neuron in 
 # Model Definition
 model = Sequential()
 
-# Convolutional Layers
-model.add(Conv2D(32, (3, 3), activation='relu', input_shape=input_shape))
+# Input Layers
+model.add(Conv2D(64, (3, 3), activation='relu', input_shape=input_shape))
 model.add(MaxPooling2D((2, 2)))
-model.add(Conv2D(64, (3, 3), activation='relu'))
+
+# Hidden Layers
+model.add(Conv2D(32, (3, 3), activation='relu'))
 model.add(MaxPooling2D((2, 2)))
-model.add(Conv2D(64, (3, 3), activation='relu'))
 
 # Output Layers
 model.add(Flatten())
-model.add(Dense(64, activation='relu'))
 model.add(Dense(num_classes, activation='softmax'))
 
 model.summary()
