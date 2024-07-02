@@ -10,46 +10,46 @@ To solve the provided CNN questions from the exam samples document, let's break 
 ##### Solution:
 1. **Output shape calculation**:
    - Formula for output shape:
-     \[
+     $$
      \text{Output Dimension} = \left\lfloor \frac{(\text{Input Dimension} - \text{Filter Size} + 2 \times \text{Padding})}{\text{Stride}} \right\rfloor + 1
-     \]
+     $$
 
    - For height and width:
-     \[
+     $$
      \text{Output Height} = \left\lfloor \frac{(28 - 5 + 2 \times 0)}{2} \right\rfloor + 1 = \left\lfloor \frac{23}{2} \right\rfloor + 1 = 12 + 1 = 13
-     \]
-     \[
+     $$
+     $$
      \text{Output Width} = \left\lfloor \frac{(28 - 5 + 2 \times 0)}{2} \right\rfloor + 1 = 13
-     \]
+     $$
 
    - For the number of filters (depth):
-     \[
+     $$
      \text{Output Depth} = 10
-     \]
+     $$
 
    - Therefore, the output shape is:
-     \[
+     $$
      13 \times 13 \times 10
-     \]
+     $$
 
 2. **Number of parameters calculation**:
-   - Each filter has dimensions \(5 \times 5 \times 3\) (height, width, depth)
+   - Each filter has dimensions $5 \times 5 \times 3$ (height, width, depth)
    - Number of parameters per filter:
-     \[
+     $$
      \text{Filter Parameters} = 5 \times 5 \times 3 = 75
-     \]
+     $$
    - Total parameters for 10 filters:
-     \[
+     $$
      \text{Total Parameters} = 75 \times 10 = 750
-     \]
+     $$
    - Additionally, each filter has one bias term:
-     \[
+     $$
      \text{Biases} = 10
-     \]
+     $$
    - Total parameters including biases:
-     \[
+     $$
      750 + 10 = 760
-     \]
+     $$
 
 #### Question 2:
 **For input shape 28x28x3 compute the shape of the output for the following network:**
@@ -61,82 +61,82 @@ To solve the provided CNN questions from the exam samples document, let's break 
 
 ##### Solution:
 1. **First Convolutional Layer**:
-   - \( k=10 \)
-   - \( f=5 \)
-   - \( p=1 \)
-   - \( s=2 \)
-   \[
+   - $ k=10 $
+   - $ f=5 $
+   - $ p=1 $
+   - $ s=2 $
+   $$
    \text{Output Height} = \left\lfloor \frac{(28 - 5 + 2 \times 1)}{2} \right\rfloor + 1 = \left\lfloor \frac{22}{2} \right\rfloor + 1 = 11 + 1 = 12
-   \]
-   \[
+   $$
+   $$
    \text{Output Width} = \left\lfloor \frac{(28 - 5 + 2 \times 1)}{2} \right\rfloor + 1 = 12
-   \]
-   \[
+   $$
+   $$
    \text{Output Shape} = 12 \times 12 \times 10
-   \]
+   $$
 
 2. **Max Pooling Layer**:
-   - \( s=2 \)
-   \[
+   - $ s=2 $
+   $$
    \text{Output Shape} = \left\lfloor \frac{12}{2} \right\rfloor \times \left\lfloor \frac{12}{2} \right\rfloor \times 10 = 6 \times 6 \times 10
-   \]
+   $$
 
 3. **Second Convolutional Layer**:
-   - \( k=15 \)
-   - \( f=3 \)
-   - \( p=2 \)
-   - \( s=2 \)
-   \[
+   - $ k=15 $
+   - $ f=3 $
+   - $ p=2 $
+   - $ s=2 $
+   $$
    \text{Output Height} = \left\lfloor \frac{(6 - 3 + 2 \times 2)}{2} \right\rfloor + 1 = \left\lfloor \frac{7}{2} \right\rfloor + 1 = 3 + 1 = 4
-   \]
-   \[
+   $$
+   $$
    \text{Output Width} = \left\lfloor \frac{(6 - 3 + 2 \times 2)}{2} \right\rfloor + 1 = 4
-   \]
-   \[
+   $$
+   $$
    \text{Output Shape} = 4 \times 4 \times 15
-   \]
+   $$
 
 4. **Third Convolutional Layer**:
-   - \( k=20 \)
-   - \( f=1 \)
-   - \( p=0 \)
-   - \( s=1 \)
-   \[
+   - $ k=20 $
+   - $ f=1 $
+   - $ p=0 $
+   - $ s=1 $
+   $$
    \text{Output Height} = \left\lfloor \frac{(4 - 1 + 2 \times 0)}{1} \right\rfloor + 1 = \left\lfloor \frac{3}{1} \right\rfloor + 1 = 3 + 1 = 4
-   \]
-   \[
+   $$
+   $$
    \text{Output Width} = \left\lfloor \frac{(4 - 1 + 2 \times 0)}{1} \right\rfloor + 1 = 4
-   \]
-   \[
+   $$
+   $$
    \text{Output Shape} = 4 \times 4 \times 20
-   \]
+   $$
 
 #### Question 3:
 **What padding needs to be used for a convolutional layer with 3 filters of f=height=width=5 and stride s=1 applied to input images of shape 28x28x3 so that the output and input shape are the same?**
 
 ##### Solution:
 To keep the output shape the same as the input shape, we use the formula for padding:
-\[
+$$
 \text{Output Shape} = \frac{\text{Input Shape} - \text{Filter Size} + 2 \times \text{Padding}}{\text{Stride}} + 1
-\]
+$$
 Given that the output shape should be equal to the input shape:
-\[
+$$
 28 = \frac{28 - 5 + 2 \times p}{1} + 1
-\]
-\[
+$$
+$$
 28 - 1 = 28 - 5 + 2 \times p
-\]
-\[
+$$
+$$
 27 = 23 + 2 \times p
-\]
-\[
+$$
+$$
 4 = 2 \times p
-\]
-\[
+$$
+$$
 p = 2
-\]
+$$
 
-Thus, padding \( p=2 \) is needed.
+Thus, padding $ p=2 $ is needed.
 
 #### Question 4:
 **Compute the result of applying a filter on a given input and followed by a max pooling. What information needs to be cached so that it can be used during back-propagation?**
@@ -186,33 +186,33 @@ For this question, let's assume the input and filter are given, and we need to f
 
 ##### Solution:
 A filter to detect a black cross (where the center is black and surrounding is white) could be:
-\[
+$$
 \text{Filter} = \begin{bmatrix}
 -1 & -1 & -1 \\
 -1 & 8 & -1 \\
 -1 & -1 & -1
 \end{bmatrix}
-\]
+$$
 
 #### Question 2:
 **Hand-engineer a filter to be convolved over the image (three channels, RGB) that leads to activations in the output at the position of the 3x3 red cross but not the blue cross.**
 
 ##### Solution:
 To detect a red cross but not a blue one:
-\[
+$$
 \text{Red Filter} = \begin{bmatrix}
 -1 & -1 & -1 \\
 -1 & 8 & -1 \\
 -1 & -1 & -1
 \end{bmatrix}
-\]
-\[
+$$
+$$
 \text{Blue Filter} = \begin{bmatrix}
 1 & 1 & 1 \\
 1 & -8 & 1 \\
 1 & 1 & 1
 \end{bmatrix}
-\]
+$$
 
 ### CNNs (4)
 
@@ -221,13 +221,13 @@ To detect a red cross but not a blue one:
 
 ##### Solution:
 1. **Horizontal Edge Detection Filter**:
-   \[
+   $$
    \text{Filter} = \begin{bmatrix}
    -1 & -1 & -1 \\
    0 & 0 & 0 \\
    1 & 1 & 1
    \end{bmatrix}
-   \]
+   $$
 
 #### Question 2:
 **Identify possible issues in a given keras/pytorch code and describe how to fix them. (wrong loss function, shapes not matching, etc.)**
@@ -349,21 +349,21 @@ model = Model(inputs=[input1, input2], outputs=output)
 
 **Number of Parameters Calculation**:
 - **First Convolutional Layers**:
-  \[
+  $$
   (3 \times 3 \times 1 \times 16 + 16) \times 2 = 160 \times 2 = 320
-  \]
+  $$
 - **Second Convolutional Layer**:
-  \[
+  $$
   (5 \times 5 \times 16 \times 32 + 32) = 12832
-  \]
+  $$
 - **Dense Layer**:
-  \[
+  $$
   (28 \times 28 \times 32 + 1) \times 10 = 251202 \times 10 = 2512020
-  \]
+  $$
 - **Total**:
-  \[
+  $$
   320 + 12832 + 2512020 = 2525172
-  \]
+  $$
 
 ### Recurrent Nets (1)
 
