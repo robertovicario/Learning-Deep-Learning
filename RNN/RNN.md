@@ -2,7 +2,7 @@
 
 ## Overview
 
-Recurrent Neural Networks (RNNs) are a type of neural network architecture designed for sequential data. Unlike traditional feedforward neural networks, RNNs have connections that form directed cycles, allowing them to maintain a hidden state that can capture information about previous inputs. This makes them particularly well-suited for tasks where the order of the data matters, such as time series prediction, natural language processing, and more.
+Recurrent Neural Networks (RNNs) are a class of artificial neural networks designed to recognize patterns in sequences of data, such as time series or natural language. RNNs are powerful tools for sequential data processing, they come with significant challenges such as the time-consuming, and the prone to overfitting, especially when trained on small datasets.
 
 ## Architecture
 
@@ -10,21 +10,18 @@ An RNN consists of a network of nodes, or neurons, arranged in layers. Each neur
 
 ### Simple Layer
 
-The basic RNN layer comprises neurons that receive input from both the current time step and the hidden state from the previous time step. The hidden state is updated at each time step based on the current input and the previous hidden state, allowing the network to maintain a memory of past inputs.
+In the simplest form, an RNN layer consists of neurons where each neuron has a recurrent connection to itself across time steps.
 
-A single RNN cell consists of an input vector $x_t$, a hidden state vector $h_t$, and an output vector $y_t$. The hidden state $h_t$ is updated based on the previous hidden state $h_{t-1}$ and the current input $x_t$. The update process can be described mathematically as follows:
+Mathemathically, this is often represented as follows:
 
-$$\boxed{h_t = \sigma(W_h \cdot h_{t-1} + W_x \cdot x_t + b_h)}$$
+$$h_t = \sigma(W_{hh} h_{t-1} + W_{xh} x_t + b_h)$$
 
-$$\boxed{y_t = W_y \cdot h_t + b_y}$$
+where $h_t$ is the hidden state at time step $t$, $W_{hh}$ is the weight matrix for the hidden state, $h_{t-1}$ is the hidden state from the previous time step, $W_{xh}$ is the weight matrix for the input $x_t$, $x_t$ is the input at time step $t$, $b_h$ is the bias term, and$\sigma$ is the activation function.
 
-where $\sigma$ is a non-linear activation function, $W_h$, $W_x$, and $W_y$ are weight matrices, and $b_h$ and $b_y$ are bias vectors.
-
-<br>
 <table>
     <tr>
-        <td><img src="/RNN/img/1.png" width="512"></td>
-        <td><img src="/RNN/img/2.png" width="512"></td>
+        <td><img src="/RNN/img/1.png" width="256"></td>
+        <td><img src="/RNN/img/2.png" width="256"></td>
     </tr>
     <tr>
         <td align="center">Architecture</td>
@@ -34,15 +31,26 @@ where $\sigma$ is a non-linear activation function, $W_h$, $W_x$, and $W_y$ are 
 
 ### Advanced Layers
 
-- **LSTM:** Long Short-Term Memory (LSTM) networks are a type of RNN designed to capture long-range dependencies and mitigate the vanishing gradient problem. LSTMs introduce a more complex cell structure, which includes gates that regulate the flow of information.
+These layers go beyond basic feedforward neural networks by introducing mechanisms to capture temporal dependencies, improve memory, and enhance model expressiveness. Below are descriptions of some advanced layers:
 
-- **GRU:** Gated Recurrent Unit (GRU) is a simplified version of LSTM that combines the forget and input gates into a single update gate and merges the cell state and hidden state. This makes GRUs computationally more efficient while still addressing the vanishing gradient problem.
+- **Long Short-Term Memory (LSTM):** These networks are a type of RNN designed to capture long-range dependencies and mitigate the vanishing gradient problem. LSTMs introduce a more complex cell structure, which includes gates that regulate the flow of information.
+
+- **Gated Recurrent Unit (GRU):** This is a simplified version of LSTM that combines the forget and input gates into a single update gate and merges the cell state and hidden state. This makes GRUs computationally more efficient while still addressing the vanishing gradient problem.
+
+<table>
+    <tr>
+        <td><img src="/RNN/img/3.png" width="256"></td>
+        <td><img src="/RNN/img/4.png" width="256"></td>
+    </tr>
+    <tr>
+        <td align="center">LSTM</td>
+        <td align="center">GRU</td>
+    </tr>
+</table>
 
 ### Dense Layer
 
-The dense layer, also known as a fully connected layer, is a traditional neural network layer where each neuron is connected to every neuron in the previous layer. In the context of RNNs, dense layers are typically used after the recurrent layers to process the sequential data output by the RNN or LSTM/GRU layers and produce the final output.
-
-- **Dropout Layer:** A dropout layer randomly sets a fraction of the input units to zero during training to prevent overfitting. This helps the model generalize better to new data.
+In an RNN architecture, the output from the RNN layers is often passed through one or more dense (fully connected) layers to perform the final prediction.
 
 ## TensorFlow Implementation
 
@@ -52,11 +60,11 @@ The dense layer, also known as a fully connected layer, is a traditional neural 
 # Model Definition
 model = Sequential()
 
-model.add(Flatten(input_shape=input_shape))  # Input Layer
+model.add(SimpleRNN(128, activation='relu', input_shape=input_shape))  # Input Layer
 
 # Hidden Layers
-model.add(Dense(128, activation='relu'))
 model.add(Dense(64, activation='relu'))
+model.add(Dense(32, activation='relu'))
 
 model.add(Dense(num_classes, activation='softmax'))  # Output Layer
 
@@ -70,8 +78,8 @@ model.compile(optimizer='adam',
 
 ```py
 # Training and Evaluation
-epochs = ...
-batch_size = ...
+epochs = 10
+batch_size = 32
 
 history = model.fit(X_train, y_train,
                     epochs=epochs,
@@ -83,10 +91,6 @@ print(f'Test Loss: {loss}')
 print(f'Test Accuracy: {accuracy}')
 ```
 
-## Word Embedding
-
-...
-
 ## Reference
 
-- [github.com/afshinea/stanford-cs-230-deep-learning](https://github.com/afshinea/stanford-cs-230-deep-learning)
+- [Stanford CS230 Deep Learning Cheatsheet](https://stanford.edu/~shervine/teaching/cs-230) by Afshine Amidi and Shervine Amidi
