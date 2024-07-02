@@ -71,12 +71,6 @@ Pooling functions include:
 
 The fully connected layer connects every neuron in one layer to every neuron in the next layer. This layer is typically used at the end of the network to combine features learned by convolutional and pooling layers and to produce the final output.
 
-Mathematically, the operation of a fully connected layer can be described as:
-
-$$y = Wx + b$$
-
-where $y$ is the output vector, $W$ is the weight matrix, $x$ is the input vector, and $b$ is the bias vector.
-
 <table>
     <tr>
         <td><img src="/CNN/img/5.png" width="512"></td>
