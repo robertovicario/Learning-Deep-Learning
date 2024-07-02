@@ -6,15 +6,21 @@ Model training involves finding the optimal parameters that minimize the error o
 
 ## Initialization
 
-...
+Initialization is the process of setting the initial values of a model's parameters before training begins. Proper initialization can improve the speed of convergence and the quality of the final solution.
 
 ### Xavier Initialization
 
-...
+Xavier Initialization is used to maintain the variance of activations and gradients across layers in deep neural networks, which helps to prevent issues related to vanishing or exploding gradients.
 
-Mathematically:
+Mathematically, for a layer with $n_{in}$ inputs and $n_{out}$ outputs, the weights $W$ are initialized as:
 
-$$...$$
+$$W \sim \mathcal{N}\left(0, \frac{2}{n_{in} + n_{out}}\right)$$
+
+or
+
+$$W \sim \mathcal{U}\left(-\sqrt{\frac{6}{n_{in} + n_{out}}}, \sqrt{\frac{6}{n_{in} + n_{out}}}\right)$$
+
+where $\mathcal{N}$ and $\mathcal{U}$ represent the normal and uniform distributions, respectively.
 
 ## Forward Propagation
 
@@ -30,22 +36,23 @@ where $W$ and $b$ are the weights and biases, $x$ is the input, $z$ is the linea
 
 ## Loss Function
 
-
-The loss function measures the difference between the predicted values and the actual values.
+The loss function measures the difference between the predicted values and the actual values. It quantifies how well or poorly the model is performing.
 
 ### Cross-Entropy Loss
 
-...
+Cross-Entropy Loss is commonly used for classification tasks, especially with softmax outputs.
 
-Mathematically:
+Mathematically, is expressed as:
 
 $$L = -\frac{1}{m} \sum_{i=1}^m \left[ y_i \log(\hat{y}_i) + (1 - y_i) \log(1 - \hat{y}_i) \right]$$
 
+where $y_i$ is the actual label, $\hat{y}_i$ is the predicted probability, and $m$ is the number of samples.
+
 ### Mean Squared Error (MSE)
 
-...
+MSE is typically used for regression tasks.
 
-Mathematically:
+Mathematically, is represented as:
 
 $$L = \frac{1}{m} \sum_{i=1}^m (y_i - \hat{y}_i)^2$$
 
@@ -74,7 +81,7 @@ $$\frac{\partial L}{\partial b} = \frac{\partial L}{\partial \hat{y}} \cdot \fra
 
 During weight update, the model's parameters are adjusted in the direction that reduces the loss. This adjustment is typically done using an optimization algorithm such as Gradient Descent.
 
-Mathematically:
+Mathematically, is expressed as:
 
 $$
 W = W - \alpha \frac{\partial L}{\partial W}
@@ -117,15 +124,16 @@ where $x^{(i:i+n)}$ and $y^{(i:i+n)}$ are the input and output batches, respecti
 
 ## Iteration and Convergence
 
-...
+Model training involves multiple iterations over the training data, and convergence refers to the point where further training does not significantly improve the model's performance:
 
-- **Epochs:** ...
+- **Epochs:** One epoch is a complete pass through the entire training dataset. Multiple epochs are usually needed for the model to learn effectively.
 
-- **Batch Size:** ...
+- **Batch Size:** The number of training examples utilized in one iteration. Smaller batch sizes often provide a regularizing effect and lead to better generalization.
 
-- **Learning Rate:** ...
+- **Learning Rate:** A hyperparameter that controls how much to change the model in response to the estimated error each time the model weights are updated.
 
-- **Model Complexity:** ...
+- **Model Complexity:** The complexity of the model, such as the number of layers and units in a neural network, affects how well the model can learn from data and generalize to new data.
+
 
 ## Optimization
 
@@ -142,117 +150,6 @@ RMSprop adjusts the learning rate for each parameter based on the magnitude of r
 ### Adam
 
 Adam combines the benefits of both Momentum and RMSprop, providing an adaptive learning rate for each parameter and accelerating convergence.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-## Backward Propagation
-
-Backward propagation involves computing the gradients of the loss function with respect to the model's parameters and using these gradients to update the parameters. This process is essential for minimizing the loss function.
-
-Mathematically, using the chain rule:
-
-$$
-\frac{\partial L}{\partial W} = \frac{\partial L}{\partial \hat{y}} \cdot \frac{\partial \hat{y}}{\partial z} \cdot \frac{\partial z}{\partial W}
-$$
-
-$$
-\frac{\partial L}{\partial b} = \frac{\partial L}{\partial \hat{y}} \cdot \frac{\partial \hat{y}}{\partial z} \cdot \frac{\partial z}{\partial b}
-$$
-
-<table>
-    <tr>
-        <td><img src="/model-traning/img/1.png" width="512"></td>
-    </tr>
-    <tr>
-        <td align="center">Backward Propagation</td>
-    </tr>
-</table>
-
-### Weight Update
-
-During weight update, the model's parameters are adjusted in the direction that reduces the loss. This adjustment is typically done using an optimization algorithm such as Gradient Descent.
-
-Mathematically:
-
-$$
-W = W - \alpha \frac{\partial L}{\partial W}
-$$
-
-$$
-b = b - \alpha \frac{\partial L}{\partial b}
-$$
-
-where $\alpha$ is the learning rate.
-
-<table>
-    <tr>
-        <td><img src="/model-traning/img/2.png" width="512"></td>
-    </tr>
-    <tr>
-        <td align="center">Weight Update</td>
-    </tr>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ## Regularization
 
@@ -326,5 +223,7 @@ early_stopping = EarlyStopping(monitor='val_loss', patience=5, restore_best_weig
 ```
 
 ## Reference
+
+- [Stanford CS229 Machine Learning Cheatsheet](https://stanford.edu/~shervine/teaching/cs-229) by Afshine Amidi and Shervine Amidi
 
 - [Stanford CS230 Deep Learning Cheatsheet](https://stanford.edu/~shervine/teaching/cs-230) by Afshine Amidi and Shervine Amidi
